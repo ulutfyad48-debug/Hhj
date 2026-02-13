@@ -1,46 +1,34 @@
-/* ============================================================
-   MASTER CONTROL DATA
-   Change all links, text, and products from here.
-   ============================================================ */
-
+/* data.js - مکمل کنٹرول */
 const siteConfig = {
-    brandName: "Elite Brands",
-    brandLogo: "https://cdn-icons-png.flaticon.com/512/3163/3163158.png", // اپنی لوگو کا لنک یہاں ڈالیں
-    
-    // وہ مین ویب سائٹ جو آپ پہلے بٹن پر دکھانا چاہتے ہیں
-    mainSiteUrl: "https://www.wikipedia.org", // اپنی اصل شاپنگ ویب سائٹ کا لنک یہاں دیں
-    
-    helpImage: "https://img.freepik.com/free-vector/customer-support-flat-illustration_23-2148889374.jpg", // ہیلپ سینٹر کی تصویر
-    helpText: "Need Assistance? Watch our tutorial or contact support."
+    brandName: "Elite Brands Pakistan",
+    brandLogo: "https://cdn-icons-png.flaticon.com/512/3163/3163158.png", // اپنا لوگو یہاں لگائیں
+    mainSiteUrl: "https://your-main-store.com", // پہلے بٹن کے لیے لنک
+    helpContact: "+923001234567" // واٹس ایپ نمبر
 };
 
 const products = [
     {
         id: 1,
         title: "Luxury Matte Lipstick",
-        category: "Cosmetics", // کیٹیگری یہاں لکھیں
-        price: "$25.00",
+        category: "Cosmetics",
+        price: "1,250", // اب روپے میں
         image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400",
-        // یہاں پلیٹ فارم کے لنکس ڈالیں۔ اگر لنک نہیں ہے تو "" (خالی) چھوڑ دیں۔
-        platforms: {
-            daraz: "https://www.daraz.pk", // لنک موجود ہے (Open ہوگا)
-            markaz: "",                    // لنک نہیں ہے (Locked ہوگا)
-            amazon: "https://www.amazon.com", 
-            shopify: "" 
-        }
+        // یہاں آپ جتنے چاہیں پلیٹ فارم شامل کریں
+        platforms: [
+            { name: "Daraz", url: "https://daraz.pk/product1" },
+            { name: "Markaz", url: "https://markaz.app/p1" },
+            { name: "WhatsApp", url: "https://wa.me/923001234567" }
+        ]
     },
     {
         id: 2,
-        title: "Organic Face Serum",
+        title: "Anti-Aging Serum",
         category: "Skin Care",
-        price: "$40.00",
+        price: "2,500",
         image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400",
-        platforms: {
-            daraz: "",   // Locked
-            markaz: "https://markaz.app", // Open
-            amazon: "",
-            shopify: "https://shopify.com"
-        }
+        platforms: [
+            { name: "Website Store", url: "https://mysite.com/order" },
+            { name: "AliExpress", url: "https://aliexpress.com" }
+        ]
     }
-    // مزید پروڈکٹس اسی طرح کاپی پیسٹ کریں
 ];
