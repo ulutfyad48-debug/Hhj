@@ -1,21 +1,18 @@
 {
-  "name": "My Professional Shop",
-  "short_name": "MyShop",
-  "description": "پاکستان کی بہترین آن لائن شاپنگ ایپ",
+  "name": "My Brand Store",
+  "short_name": "MyStore",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0d6efd",
   "icons": [
     {
-      /* یہاں اپنی ایپ کی امیج کا نام ڈالیں (مثلاً icon.png) */
-      "src": "icon.png", 
+      "src": "https://cdn-icons-png.flaticon.com/512/3163/3163158.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      /* یہاں بھی اپنی اسی امیج کا نام دوبارہ لکھیں */
-      "src": "icon.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/3163/3163158.png",
       "sizes": "512x512",
       "type": "image/png"
     }
