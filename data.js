@@ -1,52 +1,40 @@
-/* ================================================
-   یہاں اپنی ویب سائٹ کی معلومات تبدیل کریں
-   آپ کو HTML کوڈ چھیڑنے کی ضرورت نہیں ہے
-   ================================================
-*/
-
+/* data.js */
 const siteData = {
-    name: "ماریہ کاسمیٹکس", // ویب سائٹ کا نام
-    logo: "https://cdn-icons-png.flaticon.com/512/3163/3163158.png", // برانڈ لوگو کا لنک (گوگل ڈرائیو یا کوئی بھی)
-    heroTitle: "حسن اور معیار، ایک ساتھ",
-    heroDesc: "پاکستان کی بہترین آن لائن شاپنگ کا تجربہ",
-    mainShopLink: "https://digitalsidehub.kyte.site" // آپ کا موجودہ شاپنگ لنک
+    name: "Elite Store", // سٹور کا نام
+    welcomeTitle: "Choose Your Shopping Mode",
+    welcomeDesc: "Select how you would like to explore our premium collection.",
+    logo: "https://cdn-icons-png.flaticon.com/512/3163/3163158.png", 
 };
 
-// ================================================
-// آفرز (Offers) - اگر آفر نہیں دینی تو لسٹ خالی چھوڑ دیں []
-// ================================================
-const offersData = [
-    { text: "آج کی بڑی آفر: 2000 کی شاپنگ پر فری ڈلیوری!" },
-    { text: "نئے کسٹمرز کے لیے 10 فیصد رعایت۔" }
-];
-
-// ================================================
-// پروڈکٹس (Products) - جتنی چاہیں شامل کریں
-// ================================================
+/* ================================================
+   پروڈکٹس ڈیٹا (Products Data)
+   یہاں آپ اپنی مرضی کے جتنے چاہیں لنکس ڈال سکتے ہیں۔
+   ہر لنک کا ایک 'name' (جو بٹن پر نظر آئے گا) اور 'url' (ویب سائٹ کا لنک) رکھیں۔
+   ================================================
+*/
 const productsData = [
     {
-        name: "میٹ لپ اسٹک (Red)",
-        category: "کاسمیٹکس",
+        id: 1,
+        name: "Luxury Matte Lipstick",
+        desc: "Long-lasting 12-hour formula with premium finish.",
         price: "850",
-        desc: "یہ بہت ہی اعلیٰ کوالٹی کی لپ اسٹک ہے جو 12 گھنٹے تک رہتی ہے۔",
-        image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400", // امیج لنک
-        links: {
-            daraz: "https://daraz.pk/product-link", // لنک ڈالیں
-            markaz: "", // اگر لنک نہیں ہے تو خالی چھوڑ دیں، ویب سائٹ پر "Coming Soon" نظر آئے گا
-            other: "https://alibaba.com/link"
-        }
+        image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400",
+        // یہاں آپ جتنے مرضی پلیٹ فارم ایڈ کریں
+        links: [
+            { platform: "Daraz", url: "https://www.daraz.pk", color: "orange" },
+            { platform: "Markaz", url: "https://markaz.app", color: "green" },
+            { platform: "Direct Order", url: "https://wa.me/923001234567", color: "blue" } 
+        ]
     },
     {
-        name: "فیس واش (Organic)",
-        category: "اسکن کیئر",
+        id: 2,
+        name: "Organic Face Wash",
+        desc: "100% natural ingredients for glowing skin.",
         price: "450",
-        desc: "قدرتی اجزاء سے بنا بہترین فیس واش۔",
         image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400",
-        links: {
-            daraz: "",
-            markaz: "https://markaz.app/link",
-            other: ""
-        }
-    },
-    // مزید پروڈکٹ شامل کرنے کے لیے اوپر والی بریکٹ {...} کو کاپی پیسٹ کریں
+        links: [
+            { platform: "AliExpress", url: "https://aliexpress.com", color: "red" },
+            { platform: "Website Checkout", url: "#", color: "black" }
+        ]
+    }
 ];
