@@ -164,23 +164,29 @@
     </div>
 
     <nav class="bottom-nav">
-    <a href="contact.html" class="nav-item">
-        <i class="bi bi-envelope"></i>
-        <span>Contact</span>
-    </a>
-    <a href="about.html" class="nav-item">
-        <i class="bi bi-person-badge"></i>
-        <span>About</span>
-    </a>
-    <a href="terms.html" class="nav-item">
-        <i class="bi bi-file-earmark-text"></i>
-        <span>Terms</span>
-    </a>
-    <a href="#" id="devLink" target="_blank" class="nav-item">
-        <i class="bi bi-grid-fill"></i>
-        <span>More Apps</span>
-    </a>
-</nav>
+        <a href="contact.html" class="nav-item">
+            <i class="bi bi-envelope"></i>
+            <span>Contact</span>
+        </a>
+        <a href="about.html" class="nav-item">
+            <i class="bi bi-person-badge"></i>
+            <span>About</span>
+        </a>
+        <a href="terms.html" class="nav-item">
+            <i class="bi bi-file-earmark-text"></i>
+            <span>Terms</span>
+        </a>
+        
+        <a href="#" id="devLink" target="_blank" class="nav-item">
+            <i class="bi bi-grid-fill"></i>
+            <span>More Apps</span>
+        </a>
+
+        <a href="https://ulutfyad48-debug.github.io/Bachatino/" target="_blank" class="nav-item">
+            <i class="bi bi-bag-fill"></i>
+            <span>Bachatino</span>
+        </a>
+    </nav>
 
     <div id="siteOverlay">
         <div class="overlay-header">
@@ -201,6 +207,8 @@
             document.getElementById('brandLogo').src = siteConfig.brandLogo;
             document.getElementById('hUrdu').innerText = siteConfig.hadithUrdu;
             document.getElementById('hEng').innerText = siteConfig.hadithEnglish;
+            
+            // Restored the link functionality for More Apps
             document.getElementById('devLink').href = siteConfig.developerUrl;
 
             // Load Categories
