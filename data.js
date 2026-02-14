@@ -2,7 +2,7 @@
 
 const siteConfig = {
     brandName: "SSelix",
-    brandLogo: "https://lh3.googleusercontent.com/d/1AYBfk-gmFobSzNUtiUSBVEcOdGGoEiii/", // یہاں اپنا لوگو لنک لگائیں
+    brandLogo: "https://lh3.googleusercontent.com/d/1AYBfk-gmFobSzNUtiUSBVEcOdGGoEiii", // یہاں اپنا لوگو لنک لگائیں
     
     // وہ لنک جو ویب سائٹ کے اندر ہی کھلے گا (iframe میں)
     directShopUrl: "https://digitalsiteshub.github.io/", 
