@@ -19,14 +19,14 @@ const PRODUCTS = [
     title:"Product 1",
     description:"High quality product",
     price:1500,
-    image:"https://via.placeholder.com/300"
+    image:"https://drive.google.com/uc?export=view&id=1gl1T_39XdqIY9w1MNu7BxSNgOHq0WuNe"
   },
   {
     id:2,
     title:"Product 2",
     description:"Best selling item",
     price:2200,
-    image:"https://via.placeholder.com/300"
+    image:"https://drive.google.com/uc?export=view&id=1gl1T_39XdqIY9w1MNu7BxSNgOHq0WuNe"
   }
 ];
 
