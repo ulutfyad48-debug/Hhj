@@ -1,153 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Store</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UrbanStore · modern checkout</title>
+  <!-- Font & Icons (professional touch) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f5f5f5;
-}
+    body {
+      background: #f4f6fa;
+      color: #1e2b3c;
+      line-height: 1.5;
+    }
 
-header{
-  padding:15px;
-  background:white;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
-  position:sticky;
-  top:0;
-  z-index:100;
-}
+    /* sticky header with blur */
+    header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
 
-.search-box{
-  width:100%;
-  padding:10px;
-  border:1px solid #ddd;
-  border-radius:8px;
-}
+    .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #0b3b2c, #1b6b4f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo i {
+      background: #0b3b2c;
+      background: linear-gradient(145deg, #0b3b2c, #1b6b4f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2rem;
+    }
 
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:15px;
-  padding:15px;
-}
+    .search-wrapper {
+      flex: 1;
+      max-width: 420px;
+      position: relative;
+    }
+    .search-wrapper i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #7c8896;
+      font-size: 1rem;
+      pointer-events: none;
+    }
+    .search-box {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 3rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 60px;
+      font-size: 1rem;
+      background: white;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .search-box:focus {
+      outline: none;
+      border-color: #1b6b4f;
+      box-shadow: 0 4px 16px rgba(27,107,79,0.15);
+    }
 
-.card{
-  background:white;
-  border-radius:12px;
-  padding:10px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.1);
-  transition:0.3s;
-}
+    /* product grid */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-.card:hover{
-  transform:translateY(-5px);
-}
+    /* card – modern neumorphism / soft shadow */
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.2rem 1.2rem 1.5rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.02);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(2px);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 35px -8px rgba(0,40,20,0.15);
+    }
 
-.card img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:10px;
-}
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 20px;
+      background: #f0f2f5;
+      margin-bottom: 1rem;
+      border: 1px solid #f0f0f0;
+    }
 
-.qty{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:10px;
-}
+    .card h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      color: #1a2b3e;
+    }
 
-.qty button{
-  padding:5px 10px;
-  border:none;
-  background:black;
-  color:white;
-  border-radius:5px;
-  cursor:pointer;
-}
+    .card p {
+      color: #54728c;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
 
-.cart-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:green;
-  color:white;
-  padding:15px;
-  border-radius:50%;
-  cursor:pointer;
-}
+    .price {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #0b3b2c;
+      margin: 0.5rem 0 0.8rem;
+      letter-spacing: -0.01em;
+    }
 
-.popup{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.5);
-  display:none;
-  justify-content:center;
-  align-items:center;
-}
+    /* quantity selector – sleek */
+    .qty {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f1f5f9;
+      border-radius: 40px;
+      padding: 0.25rem;
+      margin-top: auto;
+      border: 1px solid #e0e8f0;
+    }
+    .qty button {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: white;
+      color: #1e2b3c;
+      font-size: 1.3rem;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.15s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qty button:hover {
+      background: #0b3b2c;
+      color: white;
+    }
+    .qty span {
+      font-weight: 600;
+      font-size: 1.1rem;
+      min-width: 32px;
+      text-align: center;
+    }
 
-.popup-content{
-  background:white;
-  padding:20px;
-  width:90%;
-  max-width:400px;
-  border-radius:10px;
-}
-.popup-content input, select{
-  width:100%;
-  padding:8px;
-  margin:5px 0;
-}
-.popup-content button{
-  width:100%;
-  padding:10px;
-  background:green;
-  color:white;
-  border:none;
-}
-</style>
+    /* floating cart button – premium */
+    .cart-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #0b3b2c;
+      color: white;
+      width: 68px;
+      height: 68px;
+      border-radius: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 12px 28px -6px rgba(11, 59, 44, 0.4);
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid rgba(255,255,255,0.2);
+      z-index: 99;
+    }
+    .cart-btn:hover {
+      background: #1b6b4f;
+      transform: scale(1.08);
+    }
+
+    /* popup modal – elegant */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 25, 20, 0.5);
+      backdrop-filter: blur(6px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+    .popup-content {
+      background: white;
+      padding: 2.2rem 2rem;
+      width: 90%;
+      max-width: 460px;
+      border-radius: 36px;
+      box-shadow: 0 40px 70px rgba(0, 20, 10, 0.3);
+      animation: fadeSlide 0.25s ease;
+    }
+    @keyframes fadeSlide {
+      0% { opacity: 0.7; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .popup-content h3 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      margin-bottom: 1.8rem;
+      color: #0b3b2c;
+      letter-spacing: -0.02em;
+    }
+    .popup-content input, .popup-content select {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      margin: 0.6rem 0;
+      border: 1.5px solid #e5e9f0;
+      border-radius: 40px;
+      font-size: 1rem;
+      background: #fafbfe;
+      transition: 0.15s;
+    }
+    .popup-content input:focus, .popup-content select:focus {
+      border-color: #1b6b4f;
+      outline: none;
+      background: white;
+    }
+    .total-row {
+      background: #edf3ef;
+      border-radius: 60px;
+      padding: 1rem 1.5rem;
+      margin: 1.8rem 0 1.2rem;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #0b3b2c;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .total-row span:last-child {
+      font-size: 1.8rem;
+    }
+    .whatsapp-btn {
+      width: 100%;
+      padding: 1.2rem;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .whatsapp-btn:hover {
+      background: #20b859;
+    }
+    .cancel-btn {
+      background: transparent;
+      border: 1.5px solid #d0dae8;
+      color: #4a5e71;
+      font-weight: 500;
+      padding: 1rem;
+      border-radius: 60px;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .cancel-btn:hover {
+      background: #f0f4fa;
+      border-color: #9aaebf;
+    }
+    .popup-content button i {
+      font-size: 1.2rem;
+    }
+
+    /* minor extras */
+    .empty-cart-msg {
+      text-align: center;
+      color: #7f8fa4;
+      padding: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #6d828e;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
-<input type="text" id="search" class="search-box" placeholder="Search product...">
+  <div class="logo">
+    <i class="fas fa-store-alt"></i> UrbanStore
+  </div>
+  <div class="search-wrapper">
+    <i class="fas fa-search"></i>
+    <input type="text" id="search" class="search-box" placeholder="Search for products...">
+  </div>
 </header>
 
+<!-- product container -->
 <div class="products" id="productContainer"></div>
 
-<div class="cart-btn" onclick="openCart()">🛒</div>
+<!-- floating cart -->
+<div class="cart-btn" onclick="openCart()">
+  <i class="fas fa-shopping-bag"></i>
+</div>
 
+<!-- popup modal -->
 <div class="popup" id="popup">
-<div class="popup-content">
-<h3>Complete Order</h3>
+  <div class="popup-content">
+    <h3>Complete order</h3>
 
-<input type="text" id="name" placeholder="Your Name">
-<input type="text" id="phone" placeholder="Mobile Number">
-<input type="email" id="email" placeholder="Email">
+    <input type="text" id="name" placeholder="Full name" value="">
+    <input type="text" id="phone" placeholder="Mobile number (e.g. 0310 1234567)">
+    <input type="email" id="email" placeholder="Email address">
 
-<select id="delivery">
-<option value="pickup">Pickup (Free)</option>
-<option value="peshawar">Peshawar</option>
-<option value="kpk">KPK</option>
-<option value="other">Other Province</option>
-</select>
+    <select id="delivery">
+      <option value="pickup">Pickup (Free) — 📍 main branch</option>
+      <option value="peshawar">Peshawar — Rs 150</option>
+      <option value="kpk">KPK (other cities) — Rs 250</option>
+      <option value="other">Other Province — Rs 400</option>
+    </select>
 
-<p id="totalAmount"></p>
+    <!-- total display -->
+    <div class="total-row">
+      <span>Total</span>
+      <span id="totalAmount">Rs 0</span>
+    </div>
 
-<button onclick="sendOrder()">Send Order on WhatsApp</button>
-<br><br>
-<button onclick="closeCart()" style="background:red;">Cancel</button>
+    <button class="whatsapp-btn" onclick="sendOrder()">
+      <i class="fab fa-whatsapp"></i> Send via WhatsApp
+    </button>
+    <button class="cancel-btn" onclick="closeCart()">
+      <i class="fas fa-times"></i> Cancel
+    </button>
+  </div>
 </div>
-</div>
 
-<script src="store.js"></script>
+<footer>
+  <span>🌿 fresh & fast • delivery options available</span>
+</footer>
+
+<script>
+  // ======== SETTINGS ========
+  const WHATSAPP_NUMBER = "923102890002";  // without spaces, with country code
+
+  const DELIVERY_CHARGES = {
+    pickup: 0,
+    peshawar: 150,
+    kpk: 250,
+    other: 400
+  };
+
+  const PICKUP_ADDRESS = "Your Pickup Address Here";
+
+  // ======== PRODUCTS (with working image hosting) ========
+  // IMPORTANT: For Google Drive images, use direct links from "uc?export=view&id=FILE_ID"
+  // If they don't appear, replace with your own hosted images (sample working URLs below)
+  const PRODUCTS = [
+    {
+      id: 1,
+      title: "Urban Classic Hoodie",
+      description: "Premium cotton, modern fit",
+      price: 1500,
+      // Using a placeholder from unsplash (reliable)
+      image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&auto=format&fit=crop"
+    },
+    {
+      id: 2,
+      title: "Minimalist Backpack",
+      description: "Waterproof, 20L, laptop sleeve",
+      price: 2200,
+      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&auto=format&fit=crop"
+    },
+    {
+      id: 3,
+      title: "Wireless Earbuds",
+      description: "Noise isolation, 24h battery",
+      price: 3200,
+      image: "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400&auto=format&fit=crop"
+    },
+    {
+      id: 4,
+      title: "Leather Sneakers",
+      description: "Tan genuine leather",
+      price: 4500,
+      image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&auto=format&fit=crop"
+    }
+  ];
+
+  // ======== LOGIC ========
+  let cart = {};   // key: product id, value: quantity
+
+  const container = document.getElementById("productContainer");
+
+  // helper to render product list (respects current cart quantities)
+  function displayProducts(list) {
+    container.innerHTML = "";
+    if (!list.length) {
+      container.innerHTML = '<div class="empty-cart-msg" style="grid-column:1/-1; padding:4rem;">✨ No products match</div>';
+      return;
+    }
+    list.forEach(product => {
+      const qty = cart[product.id] || 0;
+      container.innerHTML += `
+        <div class="card">
+          <img src="${product.image}" alt="${product.title}" loading="lazy">
+          <h4>${product.title}</h4>
+          <p>${product.description}</p>
+          <div class="price">Rs ${product.price}</div>
+          <div class="qty">
+            <button onclick="decrease(${product.id})">−</button>
+            <span id="qty-${product.id}">${qty}</span>
+            <button onclick="increase(${product.id})">+</button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  // initial render
+  displayProducts(PRODUCTS);
+
+  // quantity controls
+  window.increase = function(id) {
+    cart[id] = (cart[id] || 0) + 1;
+    document.getElementById(`qty-${id}`).innerText = cart[id];
+  };
+
+  window.decrease = function(id) {
+    if (cart[id] > 0) {
+      cart[id]--;
+      document.getElementById(`qty-${id}`).innerText = cart[id];
+    }
+  };
+
+  // search filter
+  document.getElementById("search").addEventListener("input", function(e) {
+    const value = e.target.value.toLowerCase().trim();
+    const filtered = PRODUCTS.filter(p => 
+      p.title.toLowerCase().includes(value) || 
+      p.description.toLowerCase().includes(value)
+    );
+    displayProducts(filtered);
+  });
+
+  // popup controls
+  window.openCart = function() {
+    document.getElementById("popup").style.display = "flex";
+    calculateTotal();
+  };
+
+  window.closeCart = function() {
+    document.getElementById("popup").style.display = "none";
+  };
+
+  // calculate total including delivery
+  function calculateTotal() {
+    let subtotal = 0;
+    for (let id in cart) {
+      if (cart[id] > 0) {
+        const product = PRODUCTS.find(p => p.id == id);
+        if (product) subtotal += product.price * cart[id];
+      }
+    }
+    const deliveryMethod = document.getElementById("delivery").value;
+    const deliveryFee = DELIVERY_CHARGES[deliveryMethod] || 0;
+    const total = subtotal + deliveryFee;
+    document.getElementById("totalAmount").innerText = "Rs " + total;
+  }
+
+  // recalc when delivery changes
+  document.getElementById("delivery").addEventListener("change", calculateTotal);
+
+  // send order on whatsapp
+  window.sendOrder = function() {
+    // basic validation
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    if (!name || !phone) {
+      alert("Please fill in name and phone number");
+      return;
+    }
+
+    let orderDetails = "";
+    let hasItems = false;
+    for (let id in cart) {
+      if (cart[id] > 0) {
+        hasItems = true;
+        const product = PRODUCTS.find(p => p.id == id);
+        orderDetails += `• ${product.title}  × ${cart[id]}  = Rs ${product.price * cart[id]}\n`;
+      }
+    }
+    if (!hasItems) {
+      alert("Cart is empty. Add some products.");
+      return;
+    }
+
+    const deliveryMethod = document.getElementById("delivery").value;
+    const deliveryText = {
+      pickup: "Pickup (free)",
+      peshawar: "Peshawar (Rs 150)",
+      kpk: "KPK (Rs 250)",
+      other: "Other Province (Rs 400)"
+    }[deliveryMethod] || deliveryMethod;
+
+    // calculate total again
+    let subtotal = 0;
+    for (let id in cart) if (cart[id] > 0) {
+      const product = PRODUCTS.find(p => p.id == id);
+      if (product) subtotal += product.price * cart[id];
+    }
+    const deliveryFee = DELIVERY_CHARGES[deliveryMethod];
+    const grandTotal = subtotal + deliveryFee;
+
+    const email = document.getElementById("email").value.trim() || "(not provided)";
+
+    // build message (formatted for WhatsApp)
+    let message = `🛒 *NEW ORDER* 🛒\n`;
+    message += `-----------------\n`;
+    message += `${orderDetails}\n`;
+    message += `Delivery: ${deliveryText}\n`;
+    message += `Subtotal: Rs ${subtotal}\n`;
+    message += `Delivery fee: Rs ${deliveryFee}\n`;
+    message += `*TOTAL: Rs ${grandTotal}*\n`;
+    message += `-----------------\n`;
+    message += `👤 *Name:* ${name}\n`;
+    message += `📞 *Phone:* ${phone}\n`;
+    message += `📧 *Email:* ${email}\n`;
+    message += `📍 ${deliveryMethod === 'pickup' ? 'Pickup address: ' + PICKUP_ADDRESS : ''}\n`;
+    message += `\n_Thank you for shopping!_`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, '_blank');
+  };
+
+  // optional: close popup if click outside (simple)
+  document.getElementById("popup").addEventListener("click", function(e) {
+    if (e.target === this) closeCart();
+  });
+
+  // update total if cart changes (called from increase/decrease)
+  // but we can also attach a small observer – for simplicity we recalc inside openCart
+  // also if you want real‑time update when changing qty while popup open, you can call calculateTotal from increase/decrease
+  // but careful: popup may be hidden, so we only call when popup is visible.
+  // We'll patch increase/decrease to recalc if popup open
+  const originalIncrease = window.increase;
+  window.increase = function(id) {
+    originalIncrease(id);
+    if (document.getElementById("popup").style.display === "flex") calculateTotal();
+  };
+  window.decrease = function(id) {
+    originalDecrease(id);
+    if (document.getElementById("popup").style.display === "flex") calculateTotal();
+  };
+  // store original decrease
+  const originalDecrease = window.decrease;
+  window.decrease = function(id) {
+    originalDecrease(id);
+    if (document.getElementById("popup").style.display === "flex") calculateTotal();
+  };
+</script>
 </body>
 </html>
