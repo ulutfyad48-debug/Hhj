@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="yandex-verification" content="e9ee7f4c42c5151d" />
     
-    <!-- Google Site Verification Meta Tags -->
+    <!-- Google Site Verification Meta Tags (All kept) -->
     <meta name="google-site-verification" content="u0HQvmeVKbyBWL1oaDDylFERp4bmJKpg-IT7i_U0CmE" />
     <meta name="google-site-verification" content="googleeddc628b2a5b5d0a" />
     <meta name="google-site-verification" content="y-VK8JL6U04NL6Fh-c4bOtv4bO3lQsZ_FANLe_Y50WU" />
@@ -1368,7 +1368,7 @@
                 <i class="bi bi-grid-3x3-gap-fill choice-icon"></i>
                 <div class="choice-text">
                     <h5>View Catalog</h5>
-                    <p class="urdu">واٹس ایپ / کیٹالاگ دیکھیں</p>
+                    <p class="urdu">کیٹلاگ دیکھیں</p>
                 </div>
                 <i class="bi bi-chevron-left choice-arrow"></i>
             </div>
@@ -1381,16 +1381,16 @@
             <div class="back-btn" onclick="goHome()">
                 <i class="bi bi-arrow-right"></i>
             </div>
-            <h4 class="section-title">Our Products</h4>
+            <h4 class="section-title">ہماری مصنوعات</h4>
         </div>
 
         <div class="search-filter-row">
             <div class="search-box">
                 <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Search lipstick, makeup..." onkeyup="renderProducts()">
+                <input type="text" id="searchInput" placeholder="تلاش کریں..." onkeyup="renderProducts()">
             </div>
             <select class="filter-select" id="catFilter" onchange="renderProducts()">
-                <option value="All">All Items</option>
+                <option value="All">تمام اقسام</option>
             </select>
         </div>
 
@@ -1514,6 +1514,8 @@
         // --- گلوبل ویری ایبلز ---
         let cart = []; // شاپنگ کارٹ
         let currentDeliveryCharge = 0;
+        
+        // ڈیلیوری کنفیگریشن - data.js سے لیا جائے گا
         const deliveryConfig = window.deliveryConfig || {
             peshawar: 100,
             khyberPakhtunkhwa: 200,
@@ -1537,6 +1539,7 @@
             if(typeof products !== 'undefined') {
                 const categories = ['All', ...new Set(products.map(p => p.category))];
                 const catSelect = document.getElementById('catFilter');
+                catSelect.innerHTML = '<option value="All">تمام اقسام</option>';
                 categories.forEach(cat => {
                     if(cat !== 'All') {
                         let opt = document.createElement('option');
@@ -1550,6 +1553,11 @@
 
             // کارٹ کو localStorage سے لوڈ کریں
             loadCart();
+            
+            // ہوم ویو دکھائیں
+            document.getElementById('homeView').style.display = 'block';
+            document.getElementById('catalogSection').style.display = 'none';
+            document.getElementById('shopSection').style.display = 'none';
         };
 
         // --- نیویگیشن فنکشنز ---
@@ -1565,6 +1573,7 @@
             document.getElementById('homeView').style.display = 'none';
             document.getElementById('shopSection').style.display = 'none';
             document.getElementById('catalogSection').style.display = 'block';
+            renderProducts(); // ری رینڈر کریں
             window.scrollTo(0,0);
         }
 
@@ -1596,12 +1605,15 @@
                 container.innerHTML = `
                     <div class="col-12 no-products">
                         <i class="bi bi-emoji-frown"></i>
-                        <p>No products found / کوئی پروڈکٹ نہیں ملا</p>
+                        <p>کوئی پروڈکٹ نہیں ملا</p>
                     </div>`;
                 return;
             }
 
             filtered.forEach(p => {
+                // چیک کریں کہ پروڈکٹ میں یو آر ایل ہے یا نہیں
+                const hasExternalLink = p.externalUrl && p.externalUrl !== '#';
+                
                 const html = `
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="product-card">
@@ -1616,9 +1628,14 @@
                             </div>
                             <p class="product-desc">${p.description}</p>
                             <div class="product-actions">
-                                <button onclick="addToCart(${p.id})" class="product-btn dark">
-                                    <i class="bi bi-cart-plus"></i> کارٹ میں شامل کریں
-                                </button>
+                                ${hasExternalLink ? 
+                                    `<a href="${p.externalUrl}" target="_blank" class="product-btn whatsapp">
+                                        <i class="bi bi-box-arrow-up-right"></i> خریدیں
+                                    </a>` : 
+                                    `<button onclick="addToCart(${p.id})" class="product-btn dark">
+                                        <i class="bi bi-cart-plus"></i> کارٹ میں شامل کریں
+                                    </button>`
+                                }
                             </div>
                         </div>
                     </div>
@@ -1909,10 +1926,8 @@
             }, 3000);
         }
 
-        // --- انشورینس ---
-        // پرانے فنکشنز کو ڈیلیٹ کریں
+        // --- پرانے فنکشنز کو ڈیلیٹ کریں ---
         window.openDirectShop = function() {
-            // پرانا فنکشن - اب استعمال نہیں ہوتا
             openShop();
         };
 
@@ -1924,7 +1939,7 @@
     <!-- PWA Service Worker -->
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
+            navigator.serviceWorker.register('sw.js')
                 .then(() => console.log("PWA Ready"))
                 .catch(error => console.log("PWA Error", error));
         }
