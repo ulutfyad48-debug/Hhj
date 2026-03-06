@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest AI News - AI Directory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #121212; color: white; overflow-x: hidden; }
+        .text-aqua { color: aqua; }
+        
+        /* Widget Container */
+        .news-wrapper {
+            position: relative;
+            width: 100%;
+            /* Viewport height (vh) use kar rahe hain taaki screen ke mutabiq height adjust ho */
+            height: 90vh; 
+            border-radius: 15px;
+            border: 1px solid #333;
+            overflow: hidden;
+            background: #1e1e1e;
+        }
+
+        /* Iframe ko 100% width aur height di hai */
+        iframe {
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
+        }
+
+        .btn-back {
+            color: aqua;
+            border-color: aqua;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-back:hover { background: aqua; color: black; }
+    </style>
+</head>
+<body>
+
+<div class="container py-4">
+    <div class="mb-4">
+        <a href="index.html" class="btn btn-outline-info btn-back px-4">
+           ← Back to Home
+        </a>
+    </div>
+
+    <header class="text-center mb-5">
+        <h1 class="fw-bold mb-2">AI News <span class="text-aqua">& Updates</span></h1>
+        <p class="text-secondary">Real-time updates from the global AI community.</p>
+    </header>
+
+    <div class="news-wrapper shadow-lg">
+        <iframe 
+            src="https://rss.app/embed/v1/wall/tKqeh0YSeLG2cBNE" 
+            frameborder="0">
+        </iframe>
+    </div>
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5 border-top border-secondary">
+        <div class="container text-center text-md-start">
+            <div class="row text-center text-md-start">
+
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-aqua" style="color: aqua;">Top AI</h5>
+                    <p class="small text-secondary">
+                        Browse the best AI tools, free AI software, and latest artificial intelligence tools for
+                        productivity, marketing, coding, design, and automation. Discover powerful AI solutions to boost
+                        your workflow and creativity.
+                    </p>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold">Categories</h5>
+                    <p><a href="latestTollsPage.html" class="text-secondary text-decoration-none small">Latest Tools</a>
+                    </p>
+                    <p><a href="codingAiToolsPage.html" class="text-secondary text-decoration-none small">Coding AI</a>
+                    </p>
+                    <p><a href="videoMakingTools.html" class="text-secondary text-decoration-none small">Video
+                            Making</a></p>
+                    <p><a href="chatBots.html" class="text-secondary text-decoration-none small">ChatBots</a></p>
+                    <p><a href="aiAutomationToolsPage.html" class="text-secondary text-decoration-none small">Automation
+                            Ai Tools</a></p>
+                </div>
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold">Useful Links</h5>
+                    <p><a href="contact.html" class="text-secondary text-decoration-none small">Contact Us</a></p>
+                    <p><a href="about.html" class="text-secondary text-decoration-none small">About Us</a></p>
+                </div>
+            </div>
+            <hr class="mb-4 mt-5">
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8 text-center text-md-start">
+                    <p class="small text-secondary">© 2026 Copyright:
+                        <a href="#" class="text-aqua text-decoration-none" style="color: aqua;">
+                            <strong>Top AI Tools Hub</strong>
+                        </a>
+                    </p>
+                </div>
+                <div class="col-md-5 col-lg-4 text-center text-md-end pb-4">
+                    <p class="small text-secondary">Made with ❤️ for AI Enthusiasts</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
