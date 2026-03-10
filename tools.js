@@ -118,11 +118,19 @@ const allTools = [
   islatest: true
 },
 {
-  name: "z",
+  name: "z Ai",
   description: "Your all-in-one tool for web design, presentations, and analytics.",
   url: "https://chat.z.ai",
   islatest: true
 }
+];
+const topAiToolsList = [
+    { name: "ChatGPT", description: "Advanced AI chatbot for everything.", url: "https://chatgpt.com" },
+    { name: "Midjourney", description: "Best AI Image Generator.", url: "https://www.midjourney.com" },
+    { name: "Jasper AI", description: "AI Writing Assistant.", url: "https://www.jasper.ai" },
+    { name: "Canva", description: "AI Design Tools.", url: "https://www.canva.com" },
+    { name: "Notion", description: "AI Workspace & Productivity.", url: "https://www.notion.so" },
+    { name: "GitHub Copilot", description: "AI Coding Assistant.", url: "https://github.com" }
 ];
 
 const  videoMakingAiTools = [
@@ -1137,4 +1145,3 @@ const aiAutomationTools = [
     url: "https://www.relay.app"
   }
 ];
-
