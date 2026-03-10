@@ -1,3 +1,13 @@
+const categoriesList = [
+    { name: "Coding", url: "codingAiToolsPage.html" },
+    { name: "Ai Image", url: "imageMakingools.html" },
+    { name: "ChatBots", url: "chatBots.html" },
+    { name: "Ai Video", url: "videoMakingTools.html" },
+    { name: "Automation", url: "aiAutomationToolsPage.html" },
+    { name: "Voice/Audio", url: "aiVoiceAndAudio.html" },
+    { name: "Ai Logo", url: "aiLogo.html" },
+    { name: "Ai Presentation", url: "aiPresentation.html" }
+];
 const allTools = [
 {
   name: "Seedance 2.0",
@@ -1127,3 +1137,4 @@ const aiAutomationTools = [
     url: "https://www.relay.app"
   }
 ];
+
