@@ -15,52 +15,40 @@
 </head>
 
 <body class="bg-dark text-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom sticky-top">
+    <div class="container">
+        <a class="navbar-brand logo-text" href="index.html">
+            Top<span class="logo-ai">AI</span>Tools<span class="logo-hub">Hub</span>
+        </a>
 
-    <nav class="navbar navbar-expand-lg bg-primary">
-        <div class="container-fluid">
-            <a style="color: white; font-family: 'Lora', serif;" class="navbar-brand" href="#">Top<span
-                    style="color: blue; font-size: 25px;">AI</span>Tools<span style="color: aqua;">Hub</span></a>
-             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Navigate</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-       <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link" href="news.html">Latest News</a>
-          </li>
-          <!-- <li class="nav-item dropdown text-secondary">
-            <a class="nav-link dropdown-toggle" href="news.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Latest News
-            </a>
-             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li> -->
-        </ul>
-         <!-- <form class="d-flex mt-3" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> -->
-      </div>
-    </div> 
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasNavbar">
+            <div class="offcanvas-header border-bottom border-secondary">
+                <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Menu</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">Latest News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-aqua-outline ms-lg-3 mt-3 mt-lg-0" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </nav>
-    <!-- <nav class="navbar navbar-expand-sm bg-primary">
-        <div class="container-fluid">
-            <a style="color: white; font-family: 'Lora', serif;" class="navbar-brand" href="#">Top<span
-                    style="color: blue; font-size: 25px;">AI</span>Tools<span style="color: aqua;">Hub</span></a>
-        </div>
-    </nav> -->
+    </div>
+</nav>
 
     <div class="container text-light py-5 text-center">
         <h2 class="fw-bold"> <span style="color: aqua;">Explore</span> free top and newly <span
@@ -73,179 +61,30 @@
             Video, Image, Coding & More</p>
     </div>
 
-    <div class="container mt-4 pb-4">
-        <div
-            class="category-wrapper d-flex flex-nowrap overflow-x-auto d-md-row row row-cols-md-3 row-cols-lg-6 g-2 g-md-3 pb-md-0 px-2 justify-content-md-center">
-
-            <div class="col-auto col-md">
-                <a href="codingAiToolsPage.html" class="btn btn-light rounded-pill text-nowrap w-100 shadow-sm">Coding &
-                    Presentatio.</a>
-            </div>
-
-            <div class="col-auto col-md">
-                <a href="imageMakingools.html" class="btn btn-light rounded-pill text-nowrap w-100 shadow-sm">Ai Image &
-                    Logo</a>
-            </div>
-
-            <div class="col-auto col-md">
-                <a href="chatBots.html" class="btn btn-light rounded-pill text-nowrap w-100 shadow-sm">ChatBots &
-                    Content</a>
-            </div>
-
-            <div class="col-auto col-md">
-                <a href="videoMakingTools.html" class="btn btn-light rounded-pill text-nowrap w-100 shadow-sm">Ai
-                    Video</a>
-            </div>
-
-            <div class="col-auto col-md">
-                <a href="aiAutomationToolsPage.html" class="btn btn-light rounded-pill text-nowrap w-100 shadow-sm">Ai
-                    Automation</a>
-            </div>
-
+    <div class="container mt-4" id="categoryNavContainer"></div>
+   
+   <div class="container text-center my-5">
+    <h3 class="fw-bold"><span style="color: aqua;">Top &</span> – Trending Tools</h3>
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6 g-2 mt-3 g-2 g-md-3" id="topAiGrid">
         </div>
-    </div>
-    <div class="container TopAiCategory text-center">
-        <h3 class="fw-bold"> <span style="color: aqua;">Best Artificial Intelligence Tools </span> – for Productivity,
-            Design & Automation</h3>
-        <p class="fw-bold">Discover the top AI tools used by <br>creators, developers, marketers, and businesses
-            worldwide.</p>
+</div>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3 pb-4">
-            <div class="col">
-                <div class="card h-100 bg-light border-0 shadow">
-                    <img src="chatGpt.png" class="card-img-top" alt="ChatGPT">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title">ChatGPT</h4>
-                        <p class="card-text">Advanced AI chatbot for writing, coding, and problem solving.</p>
-                        <a href="https://chatgpt.com/" class="btn btn-primary mt-auto">Visit</a>
-                    </div>
-                </div>
-            </div>
+<hr class="border-secondary container">
 
-            <div class="col">
-                <div class="card h-100 bg-light border-0 shadow">
-                    <img src="midJourney.png" class="card-img-top" alt="Midjourney">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title">Midjourney</h4>
-                        <p class="card-text">AI image generation tool for creating stunning artwork.</p>
-                        <a href="https://www.midjourney.com" class="btn btn-primary mt-auto">Visit</a>
-                    </div>
-                </div>
-            </div>
+<div class="container my-5">
+    <h2 class="text-center fw-bold mb-5">Browse by <span style="color: aqua;">Category</span></h2>
+    
+    <div id="codingAssistantAi" class="row mb-5"></div>
+    <div id="chatBots&Writing" class="row mb-5"></div>
+    <div id="aiAutomation" class="row mb-5"></div>
+    <div id="videoMakingAiTools" class="row mb-5"></div>
+    <div id="imageMakingAiTools" class="row mb-5"></div>
+    <div id="aiVoiceAndAudio" class="row mb-5"></div>
+    <div id="aiLogo" class="row mb-5"></div>
+    <div id="aiPresentation" class="row mb-5"></div>
+</div>
 
-            <div class="col">
-                <div class="card h-100 bg-light border-0 shadow">
-                    <img src="jasper.png" class="card-img-top" alt="Jasper AI">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title">Jasper Ai</h4>
-                        <p class="card-text">AI writing assistant for marketing and content creation.</p>
-                        <a href="https://www.jasper.ai" class="btn btn-primary mt-auto">Visit</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card h-100 bg-light border-0 shadow">
-                    <img src="canva.png" class="card-img-top" alt="Canva">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title">Canva</h4>
-                        <p class="card-text">AI-powered design tools for presentations and social media.</p>
-                        <a href="https://www.canva.com" class="btn btn-primary mt-auto">Visit</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card h-100 bg-light border-0 shadow">
-                    <img src="notion.png" class="card-img-top" alt="Notion AI">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title">Notion Ai</h4>
-                        <p class="card-text">Smart AI assistant integrated inside productivity workspace.</p>
-                        <a href="https://www.notion.so" class="btn btn-primary mt-auto">Visit</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card h-100 bg-light border-0 shadow">
-                    <img src="githubCopilot.png" class="card-img-top" alt="GitHub Copilot">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title">Github Copilot</h4>
-                        <p class="card-text">AI coding assistant that suggests code in real-time.</p>
-                        <a href="https://github.com/features/copilot" class="btn btn-primary mt-auto">Visit</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="container text-center">
-        <h2 class="fw-bold"> <span style="color: aqua;">Latest AI Tools </span> – Discover the Newest <span
-                style="color: greenyellow;">and Trending AI</span>
-        </h2>
-        <h3 class="fw-bold">Tools in 2026</h3>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3 pb-4" id="latestAiContainer"></div>
-        <div class="text-center mb-5">
-            <a href="latestTollsPage.html" class="btn btn-primary px-4 w-100">View More</a>
-        </div>
-    </div>
-
-    <div class="container text-center">
-        <h2> <span style="color: aqua;">Best AI </span> Coding Tools 2026 <span style="color: greenyellow;">– AI Code
-                Generators </span>
-        </h2>
-        <h3 style="color: antiquewhite;">for Developers</h3>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3 pb-4" id="codingAssistantAi"></div>
-        <div class="text-center mb-5">
-            <a href="codingAiToolsPage.html" class="btn btn-primary px-4 w-100">View More</a>
-        </div>
-    </div>
-
-    <div class="container text-center">
-        <h2> <span style="color: aqua;">Automation AI Tools – </span> Best AI Automation Software<span
-                style="color: greenyellow;"> for Workflows</span>
-        </h2>
-        <h3> & Productivity</h3>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3 pb-4" id="aiAutomation"></div>
-        <div class="text-center mb-5">
-            <a href="aiAutomationToolsPage.html" class="btn btn-primary px-4 w-100">View More</a>
-        </div>
-    </div>
-
-    <div class="container text-center">
-        <h2 class="fw-bold"> <span style="color: aqua;">Best AI </span> Video Generators 2026 <span
-                style="color: greenyellow;">– Top AI</span>
-        </h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3 pb-4" id="videoMakingAiTools"></div>
-        <div class="text-center mb-5">
-            <a href="videoMakingTools.html" class="btn btn-primary px-4 w-100">View More</a>
-        </div>
-    </div>
-
-    <div class="container text-center">
-        <h2> <span style="color: aqua;">Best AI </span> Logo Makers 2026 <span style="color: greenyellow;">– AI Branding
-                &</span>
-        </h2>
-        <h3>Design Tools</h3>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3 pb-4" id="imageMakingAiTools"></div>
-        <div class="text-center mb-5">
-            <a href="imageMakingools.html" class="btn btn-primary px-4 w-100">View More</a>
-        </div>
-    </div>
-
-    </h2>
-    <div class="container text-center">
-        <h2> <span style="color: aqua;">Best AI </span> Writing Tools 2026 <span style="color: greenyellow;">– AI
-                Content & </span>
-        </h2>
-        <h3> Chat Assistants</h3>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3 pb-4" id="chatBots&Writing"></div>
-        <div class="text-center mb-5">
-            <a href="chatBots.html" class="btn btn-primary px-4 w-100">View More</a>
-        </div>
-    </div>
-
+   
     <footer class="bg-dark text-white pt-5 pb-4 mt-5 border-top border-secondary">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start">
@@ -317,5 +156,6 @@
     <script src="script.js"></script>
 
 </body>
+
 
 </html>
