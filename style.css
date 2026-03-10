@@ -1,16 +1,241 @@
-/* Mobile scrolling smooth karne ke liye aur scrollbar hide karne ke liye */
-.category-wrapper {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
+.text-aqua { color: aqua; }
+.category-main-card {
+    transition: 0.3s;
 }
-
-.category-wrapper::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+.category-main-card:hover {
+    border-color: aqua !important;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2) !important;
 }
-
-@media (max-width: 767px) {
-    .category-wrapper {
-        padding-left: 15px;
-        padding-right: 15px;
+.tool-card img {
+    transition: 0.3s;
+}
+.tool-card:hover img {
+    transform: scale(1.05);
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .category-main-card .col-md-4 {
+        max-width: 200px;
+        margin: 0 auto;
     }
+}
+
+/* Container fix taaki horizontal scroll na aaye */
+#topAiGrid {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+/* Top Mini Cards Styling */
+.top-mini-card {
+    background: #1e1e1e !important; /* Dark theme background */
+    border: 1px solid #333 !important;
+    border-radius: 12px;
+    padding: 12px 8px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.top-mini-card:hover {
+    border-color: aqua !important;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
+}
+
+/* Favicon Icon Styling */
+.top-mini-card img {
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Tool Name */
+.top-mini-card h6 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-top: 8px;
+}
+
+.top-mini-card .btn-visit {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: aqua !important;
+    text-decoration: none;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    padding: 2px 8px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.top-mini-card .btn-visit:hover {
+    background: aqua;
+    color: #000 !important;
+    border-color: aqua;
+}
+
+/* Mobile Specific Tweaks */
+@media (max-width: 576px) {
+    .top-mini-card {
+        padding: 10px 5px;
+    }
+    .top-mini-card h6 {
+        font-size: 0.75rem;
+    }
+}
+
+
+
+/* Large Screens (Laptops) par 7 buttons fix karna */
+@media (min-width: 992px) {
+    .category-wrapper {
+        flex-wrap: nowrap !important; 
+        justify-content: center !important;
+        overflow: hidden !important;
+    }
+
+    .custom-col-7 {
+        flex: 0 0 14.28% !important;
+        width: 14.28% !important;
+        max-width: 14.28% !important;
+        padding: 0 5px !important;
+    }
+
+    .category-btn {
+        font-size: 11px !important; 
+        padding: 8px 2px !important;
+        display: block;
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .custom-col-7 {
+        flex: 0 0 25% !important;
+    }
+}
+
+/* Scrollbar hide karne ke liye */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.category-btn {
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 8px 18px;
+    font-weight: 500;
+    transition: 0.3s;
+    border: 1px solid #dee2e6;
+}
+
+.category-btn:hover {
+    background-color: aqua !important;
+    border-color: aqua;
+    transform: translateY(-2px);
+}
+
+/* Mobile par buttons ka size thoda adjust */
+@media (max-width: 768px) {
+    .category-btn {
+        font-size: 11px;
+        padding: 6px 14px;
+    }
+}
+
+/* Columns management */
+.category-col {
+    padding: 5px;
+    flex: 0 0 auto; /* Mobile par scroll ke liye zaroori hai */
+}
+
+@media (min-width: 992px) {
+    .category-col {
+        /* 100% / 7 = 14.28% */
+        flex: 0 0 14.28% !important;
+        max-width: 14.28% !important;
+    }
+    
+    .category-btn {
+        width: 100%; /* Button poori column width le */
+        font-size: 12px !important;
+        padding: 8px 2px !important;
+        text-align: center;
+    }
+
+    .category-scroll-container {
+        overflow: visible !important; /* Desktop par scroll ki zaroorat nahi */
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 991px) {
+    .category-btn {
+        font-size: 11px;
+        padding: 6px 15px;
+    }
+}
+
+/* Custom Navbar Styling */
+.bg-dark-custom {
+    background-color: #121212; /* Premium Dark Color */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-text {
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: white !important;
+}
+
+.logo-ai {
+    color: #007bff; /* Blue */
+    font-size: 28px;
+    margin: 0 2px;
+}
+
+.logo-hub {
+    color: aqua;
+}
+
+/* Nav Links Styling */
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500;
+    transition: 0.3s;
+    padding: 0.5rem 1rem !important;
+}
+
+.navbar-nav .nav-link:hover, 
+.navbar-nav .nav-link.active {
+    color: aqua !important;
+}
+
+/* Contact Button inside Navbar */
+.btn-aqua-outline {
+    border: 1px solid aqua;
+    color: aqua !important;
+    border-radius: 20px;
+    padding: 5px 20px !important;
+    transition: 0.3s;
+}
+
+.btn-aqua-outline:hover {
+    background: aqua;
+    color: #000 !important;
+}
+
+/* Sticky Navbar Shadow */
+.sticky-top {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
