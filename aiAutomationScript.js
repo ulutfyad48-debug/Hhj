@@ -1,4 +1,4 @@
-const aiVoiceAndAudio = document.getElementById("voiceAndAudio");
+const container = document.getElementById("aiAutoMationToolsPage");
 
 function createToolCard(tool) {
   const domain = new URL(tool.url).hostname.replace("www.", "");
@@ -22,4 +22,5 @@ function createToolCard(tool) {
     </div>
   `;
 }
-aiVoiceAndAudio.innerHTML = voiceAndAudioTools.map(createToolCard).join("");
+
+container.innerHTML = aiAutomationTools.map(createToolCard).join("");
