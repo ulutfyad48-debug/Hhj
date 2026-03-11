@@ -92,6 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTopToolsSection();
 
     // Category Previews (1 tool + description)
+         renderCategoryPreview(
+        "latestTools",
+        allTools,
+        "Discover cutting-edge AI coding assistants that help you write, debug, and optimize code faster with smart suggestions, automation, and real-time developer support.",
+        "latestTollsPage.html"
+    );
+
     renderCategoryPreview(
         "codingAssistantAi",
         codingAiTools,
@@ -148,3 +155,4 @@ document.addEventListener("DOMContentLoaded", () => {
         "aiPresentation.html"
     );
 });
+
