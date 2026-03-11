@@ -1,4 +1,35 @@
-// 1. Tool Card banane ka function (Universal)
+document.getElementById('mainSearchInput')?.addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase().trim();
+    const resultsSection = document.getElementById('searchResultsSection');
+    const resultsGrid = document.getElementById('searchResultsGrid');
+    const mainContent = document.querySelectorAll('.category-main-card, #topAiGrid, #categoryNavContainer, h3, h2');
+
+    if (searchTerm.length > 0) {
+        mainContent.forEach(el => el.classList.add('d-none'));
+        resultsSection.classList.remove('d-none');
+
+        const allTools = [
+            ...codingAiTools, ...videoMakingAiTools, ...imageMakingAiTools, 
+            ...chat_WritingAiTools, ...aiAutomationTools, ...voiceAndAudioTools,
+            ...logoAndDesignTools, ...presentationTools
+        ];
+
+        const filtered = allTools.filter(tool => 
+            tool.name.toLowerCase().includes(searchTerm) || 
+            tool.description.toLowerCase().includes(searchTerm)
+        );
+
+        if (filtered.length > 0) {
+            resultsGrid.innerHTML = filtered.map(tool => createToolCard(tool)).join("");
+        } else {
+            resultsGrid.innerHTML = `<div class="col-12 text-center text-muted">No tools found for "${searchTerm}"</div>`;
+        }
+    } else {
+        mainContent.forEach(el => el.classList.remove('d-none'));
+        resultsSection.classList.add('d-none');
+    }
+});
+
 function createToolCard(tool) {
     const domain = new URL(tool.url).hostname.replace("www.", "");
     const logo = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
@@ -118,3 +149,4 @@ document.addEventListener("DOMContentLoaded", () => {
         "aiPresentation.html"
     );
 });
+
