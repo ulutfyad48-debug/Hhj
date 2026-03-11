@@ -1,21 +1,38 @@
+document.getElementById('mainSearchInput')?.addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase().trim();
+    
+    // Blog Cards filtering
+    const blogCards = document.querySelectorAll('.blog-card');
+    blogCards.forEach(card => {
+        const titleText = card.innerText.toLowerCase();
+        // card ka parent column dhoond kar hide/show karna
+        const parentCol = card.closest('.col-md-6, .col-lg-4, .col-12');
+        
+        if (titleText.includes(searchTerm)) {
+            if (parentCol) parentCol.style.setProperty('display', 'block', 'important');
+        } else {
+            if (parentCol) parentCol.style.setProperty('display', 'none', 'important');
+        }
+    });
+});
 function renderBlogPosts() {
     const blogContainer = document.getElementById("blogPostsContainer");
     if (!blogContainer) return;
 
     blogContainer.innerHTML = blogPosts.map(post => `
-        <div class="col-md-6 col-lg-4">
-            <div class="card bg-secondary text-white border-0 shadow-sm h-100">
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card blog-card bg-secondary text-white border-0 shadow-sm h-100">
                 <img src="${post.image}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="${post.title}">
                 <div class="card-body">
-                    <span class="badge bg-aqua text-dark mb-2" style="background-color: aqua;">${post.category}</span>
-                    <h5 class="card-title">${post.title}</h5>
+                    <span class="badge mb-2" style="background-color: aqua; color: #000;">${post.category}</span>
+                    <h5 class="card-title blog-title">${post.title}</h5>
                     <p class="card-text small text-light-50">${post.excerpt}</p>
                     <a href="blog-details.html?id=${post.id}" class="btn btn-sm btn-outline-info">Read More</a>
                 </div>
             </div>
         </div>
     `).join("");
-}
+} 
 
 // Render call karein
 document.addEventListener("DOMContentLoaded", renderBlogPosts);
@@ -358,3 +375,4 @@ const blogPosts = [
 }
 
 ]
+
