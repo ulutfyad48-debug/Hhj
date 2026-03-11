@@ -15,6 +15,147 @@ const allTools = [
   url: "https://openart.ai",
   islatest: true
 },
+
+{
+  name: "OpenAI GPT-4.5",
+  description: "OpenAI GPT-4.5 is a powerful multimodal AI model designed for advanced reasoning, coding, and real-time conversational intelligence.",
+  url: "https://openai.com",
+  islatest: true,
+  date: "3/26/2026"
+},
+{
+  name: "Google Gemini 2.0 Flash",
+  description: "Gemini 2.0 Flash is Google’s ultra-fast multimodal AI model optimized for real-time responses, coding, and AI automation.",
+  url: "https://gemini.google.com",
+  islatest: true,
+  date: "3/24/2026"
+},
+{
+  name: "Mistral Large 2",
+  description: "Mistral Large 2 is a next-generation open AI model designed for enterprise reasoning, coding, and multilingual content generation.",
+  url: "https://mistral.ai",
+  islatest: true,
+  date: "3/22/2026"
+},
+{
+  name: "Pika 2.0",
+  description: "Pika 2.0 is an advanced AI video generator capable of creating cinematic videos with realistic physics and visual storytelling.",
+  url: "https://pika.art",
+  islatest: true,
+  date: "3/20/2026"
+},
+{
+  name: "Runway Gen-3",
+  description: "Runway Gen-3 is a cutting-edge AI video generation model for producing high-quality cinematic videos from simple prompts.",
+  url: "https://runwayml.com",
+  islatest: true,
+  date: "3/18/2026"
+},
+{
+  name: "Stability AI Stable Video",
+  description: "Stable Video by Stability AI generates realistic video animations from images and prompts using generative AI.",
+  url: "https://stability.ai",
+  islatest: true,
+  date: "3/16/2026"
+},
+{
+  name: "Ideogram 2.0",
+  description: "Ideogram 2.0 improves AI image generation with perfect typography rendering and high-quality design outputs.",
+  url: "https://ideogram.ai",
+  islatest: true,
+  date: "3/14/2026"
+},
+{
+  name: "Perplexity Pages",
+  description: "Perplexity Pages automatically creates structured research pages with AI-generated explanations and references.",
+  url: "https://www.perplexity.ai",
+  islatest: true,
+  date: "3/12/2026"
+},
+{
+  name: "Figure AI",
+  description: "Figure AI develops humanoid robots powered by advanced AI models designed to automate real-world tasks.",
+  url: "https://figure.ai",
+  islatest: true,
+  date: "3/10/2026"
+},
+{
+  name: "Magic Animate AI",
+  description: "Magic Animate AI converts static images into animated videos using motion generation and AI animation technology.",
+  url: "https://magic.animate.ai",
+  islatest: true,
+  date: "3/8/2026"
+},
+{
+name: "Luma Dream Machine",
+description: "AI video generator that creates realistic cinematic videos from text prompts with advanced motion and scene control.",
+url: "https://lumalabs.ai",
+islatest: true,
+date: "3/26/2026"
+},
+{
+name: "Krea AI",
+description: "Real-time AI image generation and enhancement platform for designers, artists, and content creators.",
+url: "https://krea.ai",
+islatest: true,
+date: "3/25/2026"
+},
+{
+name: "Magnific AI",
+description: "AI image upscaler that enhances photos with extreme detail and photorealistic textures.",
+url: "https://magnific.ai",
+islatest: true,
+date: "3/24/2026"
+},
+{
+name: "Devin AI",
+description: "Autonomous AI software engineer capable of coding, debugging, and completing full development tasks.",
+url: "https://cognition.ai",
+islatest: true,
+date: "3/23/2026"
+},
+{
+name: "Ideogram 2.0",
+description: "Advanced AI image generator specialized in text rendering and professional design visuals.",
+url: "https://ideogram.ai",
+islatest: true,
+date: "3/22/2026"
+},
+{
+name: "Haiper AI",
+description: "Text-to-video AI generator that produces cinematic animations and social media video content.",
+url: "https://haiper.ai",
+islatest: true,
+date: "3/21/2026"
+},
+{
+name: "Genmo AI",
+description: "AI video generation platform designed for animated storytelling and creative video production.",
+url: "https://genmo.ai",
+islatest: true,
+date: "3/20/2026"
+},
+{
+name: "Recraft AI",
+description: "AI graphic generator for creating professional vector illustrations, icons, and branding visuals.",
+url: "https://www.recraft.ai",
+islatest: true,
+date: "3/19/2026"
+},
+{
+name: "CrewAI",
+description: "AI agent framework that allows multiple AI agents to collaborate and automate complex workflows.",
+url: "https://crewai.com",
+islatest: true,
+date: "3/18/2026"
+},
+{
+name: "Superagent AI",
+description: "AI platform for building autonomous AI agents capable of performing automated tasks and research.",
+url: "https://superagent.sh",
+islatest: true,
+date: "3/17/2026"
+},
   {
     name: "Claude AI",
     description: "Powerful AI assistant for writing, coding and analysis.",
@@ -134,6 +275,21 @@ const topAiToolsList = [
 ];
 
 const  videoMakingAiTools = [
+{
+  name: "Luma Dream Machine",
+  description: "Luma Dream Machine generates realistic AI videos with cinematic motion from simple text prompts.",
+  url: "https://lumalabs.ai"
+},
+{
+  name: "Haiper AI",
+  description: "Haiper AI is a powerful text-to-video generator that creates high-quality AI videos with motion control.",
+  url: "https://haiper.ai"
+},
+{
+  name: "Genmo AI",
+  description: "Genmo AI generates animated videos and visual storytelling content using advanced generative models.",
+  url: "https://genmo.ai"
+},
 {
   name: "VEED AI",
   description: "VEED AI is an online AI video editor with automatic subtitles, text-to-video generation, and social media video optimization tools.",
@@ -273,6 +429,21 @@ const  videoMakingAiTools = [
 ];
 
 const imageMakingAiTools = [
+{
+  name: "Recraft AI",
+  description: "Recraft AI generates vector graphics, icons, and professional illustrations using advanced AI image models.",
+  url: "https://www.recraft.ai"
+},
+{
+  name: "Krea AI",
+  description: "Krea AI provides real-time AI image generation and enhancement for designers and artists.",
+  url: "https://krea.ai"
+},
+{
+  name: "Magnific AI",
+  description: "Magnific AI enhances images with AI upscaling and photorealistic detail improvements.",
+  url: "https://magnific.ai"
+},
 {
   name: "Artbreeder",
   description: "Artbreeder is an AI image generator that lets users create and modify portraits, characters, and landscapes using advanced generative AI models.",
@@ -479,6 +650,21 @@ const imageMakingAiTools = [
 ]
 
 const codingAiTools = [
+{
+  name: "Devin AI",
+  description: "Devin AI is an autonomous AI software engineer capable of writing, debugging, and deploying code independently.",
+  url: "https://cognition.ai"
+},
+{
+  name: "Poolside AI",
+  description: "Poolside AI builds AI models specifically designed to automate software development tasks.",
+  url: "https://poolside.ai"
+},
+{
+  name: "OpenDevin",
+  description: "OpenDevin is an open-source autonomous AI software developer inspired by Devin AI.",
+  url: "https://github.com/OpenDevin"
+},
 {
   name: "CodeRabbit",
   description: "CodeRabbit is an AI-powered code review assistant that automatically analyzes pull requests and suggests optimized improvements for developers.",
@@ -1145,3 +1331,4 @@ const aiAutomationTools = [
     url: "https://www.relay.app"
   }
 ];
+
