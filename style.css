@@ -239,3 +239,41 @@
 .sticky-top {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
+/* Hero Section Styling */
+.hero-section {
+    background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), 
+                url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    padding: 120px 0;
+    min-height: 60vh;
+}
+
+.text-aqua {
+    color: aqua;
+}
+
+.search-box {
+    transition: transform 0.3s ease;
+}
+
+.search-box:focus-within {
+    transform: scale(1.02);
+}
+
+.search-box input:focus {
+    box-shadow: none;
+}
+
+.btn-aqua {
+    background-color: aqua;
+    color: #000;
+    transition: 0.3s;
+}
+
+.btn-aqua:hover {
+    background-color: #00cccc;
+    transform: translateY(-2px);
+}
+
