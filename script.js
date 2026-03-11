@@ -29,7 +29,6 @@ document.getElementById('mainSearchInput')?.addEventListener('input', function(e
         resultsSection.classList.add('d-none');
     }
 });
-
 function createToolCard(tool) {
     const domain = new URL(tool.url).hostname.replace("www.", "");
     const logo = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
@@ -149,4 +148,3 @@ document.addEventListener("DOMContentLoaded", () => {
         "aiPresentation.html"
     );
 });
-
