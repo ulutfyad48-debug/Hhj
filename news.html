@@ -4,53 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Find the best free and pro AI tools for coding, video editing, image generation, and automation. Your ultimate AI directory.">
-<meta name="keywords" content="Best AI tools 2026, Free AI software, AI for coding, AI video generators">
+    <meta name="keywords" content="Best AI tools 2026, Free AI software, AI for coding, AI video generators">
     <title>Latest AI News - AI Directory</title>
+    
     <meta property="og:type" content="website">
-<meta property="og:url" content="https://ulutfyad48-debug.github.io/TopAIToolsHub/">
-<meta property="og:title" content="Top AI Tools Hub - Discover the Future of AI">
-<meta property="og:description" content="Find the most powerful AI tools to boost your productivity. From coding to creativity, we have it all.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200">
+    <meta property="og:url" content="https://ulutfyad48-debug.github.io/TopAIToolsHub/">
+    <meta property="og:title" content="Top AI Tools Hub - Discover the Future of AI">
+    <meta property="og:description" content="Find the most powerful AI tools to boost your productivity. From coding to creativity, we have it all.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200">
 
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="Top AI Tools Hub">
-<meta property="twitter:description" content="The ultimate directory for AI enthusiasts. Explore tools and stay ahead in 2026.">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Top AI Tools Hub">
+    <meta property="twitter:description" content="The ultimate directory for AI enthusiasts. Explore tools and stay ahead in 2026.">
+    
     <meta name="title" content="Top AI Tools Hub - Best AI Tools Directory 2026">
-<meta name="description" content="Explore 100+ best AI tools for coding, video editing, automation, and design. Stay updated with the latest AI blogs and news in 2026.">
-<meta name="keywords" content="Best AI tools 2026, Free AI tools, AI for coding, AI video generators, AI automation, AI logo maker, AI chatBots">
-<meta name="author" content="Top AI Tools Hub">
-<meta name="robots" content="index, follow">
+    <meta name="description" content="Explore 100+ best AI tools for coding, video editing, automation, and design. Stay updated with the latest AI blogs and news in 2026.">
+    <meta name="keywords" content="Best AI tools 2026, Free AI tools, AI for coding, AI video generators, AI automation, AI logo maker, AI chatBots">
+    <meta name="author" content="Top AI Tools Hub">
+    <meta name="robots" content="index, follow">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
-        body { background-color: #121212; color: white; overflow-x: hidden; }
+        body { 
+            background-color: #121212; 
+            color: white; 
+            overflow-x: hidden; 
+            font-family: Arial, sans-serif;
+        }
         .text-aqua { color: aqua; }
         
-        /* Widget Container */
-        .news-wrapper {
-            position: relative;
-            width: 100%;
-            /* Viewport height (vh) use kar rahe hain taaki screen ke mutabiq height adjust ho */
-            height: 90vh; 
-            border-radius: 15px;
-            border: 1px solid #333;
-            overflow: hidden;
-            background: #1e1e1e;
-        }
-
-        /* Iframe ko 100% width aur height di hai */
-        iframe {
-            width: 100% !important;
-            height: 100% !important;
-            border: none;
-        }
-
         .btn-back {
             color: aqua;
             border-color: aqua;
             border-radius: 50px;
             transition: 0.3s;
         }
-        .btn-back:hover { background: aqua; color: black; }
+        .btn-back:hover { 
+            background: aqua; 
+            color: black; 
+            box-shadow: 0 0 10px aqua;
+        }
+
+        /* Professional News Cards Styling */
+        .news-card {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            height: 100%;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.15);
+            border-color: aqua;
+        }
+        .news-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #333;
+        }
+        .news-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            line-height: 1.4;
+            color: aqua;
+            text-decoration: none;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .news-title:hover {
+            color: white;
+        }
+        .news-date {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        
+        /* Loader Styling */
+        .loader-container {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .spinner-border {
+            color: aqua;
+            width: 3rem;
+            height: 3rem;
+        }
     </style>
 </head>
 <body>
@@ -67,12 +116,13 @@
         <p class="text-secondary">Real-time updates from the global AI community.</p>
     </header>
 
-    <div class="news-wrapper shadow-lg">
-        <iframe 
-            src="https://rss.app/embed/v1/wall/tKqeh0YSeLG2cBNE" 
-            frameborder="0">
-        </iframe>
+    <div id="news-container" class="row g-4">
+        <div class="col-12 loader-container" id="news-loader">
+            <div class="spinner-border" role="status"></div>
+            <p class="mt-3 text-aqua">Fetching latest AI News...</p>
+        </div>
     </div>
+
     <footer class="bg-dark text-white pt-5 pb-4 mt-5 border-top border-secondary">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start">
@@ -88,15 +138,11 @@
 
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold">Categories</h5>
-                    <p><a href="latestTollsPage.html" class="text-secondary text-decoration-none small">Latest Tools</a>
-                    </p>
-                    <p><a href="codingAiToolsPage.html" class="text-secondary text-decoration-none small">Coding AI</a>
-                    </p>
-                    <p><a href="videoMakingTools.html" class="text-secondary text-decoration-none small">Video
-                            Making</a></p>
+                    <p><a href="latestTollsPage.html" class="text-secondary text-decoration-none small">Latest Tools</a></p>
+                    <p><a href="codingAiToolsPage.html" class="text-secondary text-decoration-none small">Coding AI</a></p>
+                    <p><a href="videoMakingTools.html" class="text-secondary text-decoration-none small">Video Making</a></p>
                     <p><a href="chatBots.html" class="text-secondary text-decoration-none small">ChatBots</a></p>
-                    <p><a href="aiAutomationToolsPage.html" class="text-secondary text-decoration-none small">Automation
-                            Ai Tools</a></p>
+                    <p><a href="aiAutomationToolsPage.html" class="text-secondary text-decoration-none small">Automation Ai Tools</a></p>
                 </div>
 
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
@@ -121,8 +167,76 @@
         </div>
     </footer>
 </div>
+
+<script>
+    const RSS_URL = "https://news.google.com/rss/search?q=AI+tools&hl=en-US&gl=US&ceid=US:en";
+    const API_URL = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(RSS_URL);
+    const newsContainer = document.getElementById("news-container");
+    const loader = document.getElementById("news-loader");
+
+    // Default high-quality AI image if the news article doesn't provide one
+    const defaultImage = "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80";
+
+    fetch(API_URL)
+    .then(res => res.json())
+    .then(data => {
+        // Remove loader
+        loader.style.display = 'none';
+        
+        let output = "";
+        
+        // Loop through the top 15 news items
+        data.items.slice(0, 15).forEach(item => {
+            
+            // Format Date nicely
+            let pubDate = new Date(item.pubDate);
+            let formattedDate = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            // Try to find image in enclosure or thumbnail, otherwise use default
+            let imageUrl = defaultImage;
+            if(item.thumbnail && item.thumbnail !== "") {
+                imageUrl = item.thumbnail;
+            } else if (item.enclosure && item.enclosure.link) {
+                imageUrl = item.enclosure.link;
+            } else {
+                // Sometime google news puts image tag inside description, extracting it using Regex
+                const imgRegex = /<img[^>]+src="?([^"\s]+)"?\s*\/>/g;
+                const match = imgRegex.exec(item.description);
+                if(match && match[1]) {
+                    imageUrl = match[1];
+                }
+            }
+
+            // Add the Bootstrap Card HTML
+            output += `
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="news-card w-100 d-flex flex-column">
+                    <img src="${imageUrl}" class="news-img" alt="AI News Image" onerror="this.src='${defaultImage}'">
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <a href="${item.link}" target="_blank" class="news-title">${item.title}</a>
+                        <div class="news-date">🗓️ ${formattedDate}</div>
+                        <div class="mt-auto">
+                            <a href="${item.link}" target="_blank" class="btn btn-outline-info w-100 mt-3" style="border-radius: 50px;">Read Full Story →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        });
+        
+        // Inject the generated HTML into the container
+        newsContainer.innerHTML = output;
+    })
+    .catch(err => {
+        loader.style.display = 'none';
+        newsContainer.innerHTML = `
+            <div class="col-12 text-center text-danger">
+                <div class="alert alert-dark border-danger" role="alert">
+                    Failed to load latest AI news. Please check your connection or try again later.
+                </div>
+            </div>`;
+        console.error("Error fetching news:", err);
+    });
+</script>
+
 </body>
-
 </html>
-
-
