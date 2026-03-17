@@ -172,6 +172,14 @@
         footer a:hover {
             color: aqua !important;
         }
+        .auto-update-badge {
+            font-size: 0.8rem;
+            color: #0ff;
+            border: 1px solid #0ff33;
+            border-radius: 20px;
+            padding: 0.2rem 1rem;
+            background: #0ff11;
+        }
     </style>
 </head>
 <body>
@@ -193,9 +201,12 @@
     <div class="news-wrapper-new">
         <div class="news-header-bar">
             <span class="last-updated" id="lastUpdated"><i class="far fa-clock me-1"></i> fetching news...</span>
-            <button class="btn btn-refresh" id="refreshBtn" onclick="fetchNews()">
-                <i class="fas fa-sync-alt me-1"></i>refresh
-            </button>
+            <div>
+                <span class="auto-update-badge me-2"><i class="fas fa-sync-alt fa-spin me-1"></i>auto 30s</span>
+                <button class="btn btn-refresh" id="refreshBtn" onclick="fetchNews(true)">
+                    <i class="fas fa-sync-alt me-1"></i>refresh
+                </button>
+            </div>
         </div>
 
         <div id="news-container" class="news-grid">
@@ -300,18 +311,22 @@
         }
 
         // main fetch with timeout, using fresh URL each time
-        async function fetchNews() {
+        // Accepts optional skipCache flag (always true now)
+        async function fetchNews(manual = false) {
             // Set a timeout promise
             const timeoutPromise = new Promise((_, reject) => 
                 setTimeout(() => reject(new Error('Fetch timeout')), 10000)
             );
             
-            newsContainer.innerHTML = `
-                <div class="text-center text-secondary py-5" style="grid-column:1/-1;">
-                    <div class="spinner-border text-aqua" role="status"></div>
-                    <p class="mt-2">Loading latest AI tools news ...</p>
-                </div>
-            `;
+            // Only show loading if manual or if container empty
+            if (manual || !newsContainer.children.length || newsContainer.innerHTML.includes('spinner')) {
+                newsContainer.innerHTML = `
+                    <div class="text-center text-secondary py-5" style="grid-column:1/-1;">
+                        <div class="spinner-border text-aqua" role="status"></div>
+                        <p class="mt-2">Loading latest AI tools news ...</p>
+                    </div>
+                `;
+            }
 
             try {
                 // Build fresh URL with cache buster inside RSS
@@ -388,24 +403,29 @@
 
             } catch (error) {
                 console.error('News fetch error:', error);
-                newsContainer.innerHTML = `
-                    <div class="alert alert-danger bg-transparent border-danger text-center text-secondary py-5" style="grid-column:1/-1; background:#1e1e1e !important;">
-                        <i class="fas fa-exclamation-triangle text-aqua fs-1 mb-3"></i>
-                        <p>Unable to load news. Please try again later.</p>
-                        <button class="btn btn-outline-info btn-sm mt-2" onclick="fetchNews()"><i class="fas fa-sync-alt"></i> retry</button>
-                    </div>
-                `;
+                if (manual || !newsContainer.innerHTML.includes('alert')) {
+                    newsContainer.innerHTML = `
+                        <div class="alert alert-danger bg-transparent border-danger text-center text-secondary py-5" style="grid-column:1/-1; background:#1e1e1e !important;">
+                            <i class="fas fa-exclamation-triangle text-aqua fs-1 mb-3"></i>
+                            <p>Unable to load news. Please try again later.</p>
+                            <button class="btn btn-outline-info btn-sm mt-2" onclick="fetchNews(true)"><i class="fas fa-sync-alt"></i> retry</button>
+                        </div>
+                    `;
+                }
             }
         }
 
-        // attach fetch to window and auto-refresh
+        // attach fetch to window
         window.fetchNews = fetchNews;
 
         // when DOM is fully loaded, start fetch
         document.addEventListener('DOMContentLoaded', function() {
-            fetchNews();
-            // auto-refresh every 5 minutes
-            setInterval(fetchNews, 300000);
+            fetchNews(true); // initial load
+            
+            // auto-refresh every 30 seconds (30000 ms)
+            setInterval(function() {
+                fetchNews(false); // silent update
+            }, 30000);
         });
     })();
 </script>
