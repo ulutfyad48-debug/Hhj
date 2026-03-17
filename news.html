@@ -259,21 +259,11 @@
 
 <script>
     (function() {
-        // ============================================================
-        //  ROBUST NEWS FETCHER
-        //  Strategy:
-        //   1) Try rss2json.com for 3 different feeds (NO cache-buster
-        //      so rss2json can serve cached responses reliably)
-        //   2) If rss2json fails → fall back to allorigins.win proxy
-        //      which parses the raw RSS XML directly
-        //  Result: 30-60 fresh, deduplicated articles sorted newest-first
-        // ============================================================
-
         const RSS_FEEDS = [
             "https://news.google.com/rss/search?q=AI+tools+artificial+intelligence+launch&hl=en-US&gl=US&ceid=US:en",
-            "https://news.google.com/rss/search?q=ChatGPT+OR+Gemini+OR+Claude+OR+OpenAI+latest&hl=en-US&gl=US&ceid=US:en",
-            "https://news.google.com/rss/search?q=machine+learning+AI+startup+news+2025&hl=en-US&gl=US&ceid=US:en",
-            "https://news.google.com/rss/search?q=AI+image+generator+OR+AI+video+tool+OR+AI+coding&hl=en-US&gl=US&ceid=US:en"
+            "https://news.google.com/rss/search?q=ChatGPT+OR+Gemini+OR+Claude+OR+OpenAI&hl=en-US&gl=US&ceid=US:en",
+            "https://news.google.com/rss/search?q=machine+learning+AI+startup+news&hl=en-US&gl=US&ceid=US:en",
+            "https://news.google.com/rss/search?q=AI+image+generator+OR+AI+video+tool&hl=en-US&gl=US&ceid=US:en"
         ];
 
         const newsContainer = document.getElementById('news-container');
@@ -285,8 +275,7 @@
             const m = desc.match(/<img[^>]+src=["']([^"']+)["']/i);
             if (!m) return null;
             let s = m[1];
-            if (s.startsWith('//')) s = 'https:' + s;
-            return s;
+            return s.startsWith('//') ? 'https:' + s : s;
         }
         function cleanDesc(html, max = 105) {
             let t = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -304,7 +293,6 @@
             return w.length >= 2 ? (w[0][0] + w[1][0]).toUpperCase() : title.slice(0, 2).toUpperCase();
         }
 
-        // ── card builder ─────────────────────────────────────────────
         function buildCard(item) {
             const title   = item.title || 'AI update';
             const link    = (item.link || '#').replace(/'/g, "\\'").replace(/"/g, '&quot;');
@@ -335,25 +323,42 @@
             </div>`;
         }
 
-        // ── fetch via rss2json (primary) ──────────────────────────────
-        async function viaRss2Json(rssUrl) {
-            const api = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=20`;
-            const res = await fetch(api);
-            const data = await res.json();
-            if (data.status === 'ok' && data.items && data.items.length) return data.items;
-            throw new Error('rss2json: no items');
+        // ── stored items (merged from all feeds) ─────────────────────
+        let allItems = [];
+        const seen = new Set();
+
+        function mergeItems(newItems) {
+            newItems.forEach(item => {
+                const k = item.link || item.title;
+                if (!seen.has(k)) { seen.add(k); allItems.push(item); }
+            });
+            allItems.sort((a, b) => {
+                const da = a.pubDate ? new Date(a.pubDate) : 0;
+                const db = b.pubDate ? new Date(b.pubDate) : 0;
+                return db - da;
+            });
         }
 
-        // ── fetch via allorigins CORS proxy (fallback) ────────────────
-        async function viaAllOrigins(rssUrl) {
-            const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
-            const res   = await fetch(proxy);
-            const data  = await res.json();
-            const parser = new DOMParser();
-            const xml    = parser.parseFromString(data.contents, 'text/xml');
-            const nodes  = Array.from(xml.querySelectorAll('item'));
-            if (!nodes.length) throw new Error('allorigins: no items');
-            return nodes.map(n => ({
+        function renderItems() {
+            const items = allItems.slice(0, 60);
+            newsContainer.innerHTML = items.map(buildCard).join('');
+            const now = new Date();
+            lastUpdatedSpan.innerHTML =
+                `<i class="far fa-clock me-1"></i> updated: ${now.toLocaleTimeString()} &nbsp;<span style="color:#0f9;font-size:.8rem;">${items.length} articles</span>`;
+        }
+
+        // ── fetch one feed via rss2json (fast, cached OK) ─────────────
+        async function fetchFeed(url) {
+            const api = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}&count=20`;
+            const res  = await fetch(api, { cache: 'no-store' });
+            const data = await res.json();
+            if (data.status === 'ok' && data.items?.length) return data.items;
+            // fallback: allorigins proxy
+            const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+            const res2  = await fetch(proxy);
+            const d2    = await res2.json();
+            const xml   = new DOMParser().parseFromString(d2.contents, 'text/xml');
+            return Array.from(xml.querySelectorAll('item')).map(n => ({
                 title:       n.querySelector('title')?.textContent || '',
                 link:        n.querySelector('link')?.textContent  || '',
                 pubDate:     n.querySelector('pubDate')?.textContent || '',
@@ -361,69 +366,42 @@
             }));
         }
 
-        // ── fetch one feed, try primary then fallback ─────────────────
-        async function fetchOneFeed(rssUrl) {
-            try { return await viaRss2Json(rssUrl); } catch (_) {}
-            try { return await viaAllOrigins(rssUrl); } catch (_) {}
-            return [];
-        }
-
-        // ── main ──────────────────────────────────────────────────────
+        // ── MAIN: show first feed instantly, rest quietly in BG ───────
         async function fetchNews(manual = false) {
-            if (manual || newsContainer.innerHTML.includes('spinner') || !newsContainer.children.length) {
+            if (manual) {
+                allItems = [];
+                seen.clear();
                 newsContainer.innerHTML = `
                     <div class="text-center text-secondary py-5" style="grid-column:1/-1;">
                         <div class="spinner-border" style="color:aqua" role="status"></div>
-                        <p class="mt-2">Loading latest AI tools news ...</p>
+                        <p class="mt-2">Loading latest AI news...</p>
                     </div>`;
             }
 
             try {
-                // Fetch feeds one-by-one with a small gap to avoid rate limits
-                const allItems = [];
-                for (const feed of RSS_FEEDS) {
-                    const items = await fetchOneFeed(feed);
-                    allItems.push(...items);
-                    // tiny breathing room between requests
-                    await new Promise(r => setTimeout(r, 300));
-                }
+                // ① Fetch FIRST feed — show immediately (fast: ~1-2s)
+                const first = await fetchFeed(RSS_FEEDS[0]);
+                mergeItems(first);
+                renderItems();
 
-                if (!allItems.length) throw new Error('No articles fetched');
-
-                // Deduplicate by link
-                const seen = new Set();
-                const unique = allItems.filter(item => {
-                    const k = item.link || item.title;
-                    if (seen.has(k)) return false;
-                    seen.add(k);
-                    return true;
-                });
-
-                // Sort newest first
-                unique.sort((a, b) => {
-                    const da = a.pubDate ? new Date(a.pubDate) : 0;
-                    const db = b.pubDate ? new Date(b.pubDate) : 0;
-                    return db - da;
-                });
-
-                const items = unique.slice(0, 60);
-                newsContainer.innerHTML = items.map(buildCard).join('');
-
-                const now = new Date();
-                lastUpdatedSpan.innerHTML =
-                    `<i class="far fa-clock me-1"></i> updated: ${now.toLocaleTimeString()} &nbsp;<span style="color:#0f9;font-size:.8rem;">${items.length} articles</span>`;
+                // ② Fetch remaining feeds in parallel (silent background update)
+                const rest = await Promise.allSettled(RSS_FEEDS.slice(1).map(fetchFeed));
+                rest.forEach(r => { if (r.status === 'fulfilled') mergeItems(r.value); });
+                renderItems(); // update grid with all combined news
 
             } catch (err) {
                 console.error(err);
-                newsContainer.innerHTML = `
-                    <div class="alert alert-danger bg-transparent border-danger text-center text-secondary py-5"
-                         style="grid-column:1/-1;background:#1e1e1e!important;">
-                        <i class="fas fa-exclamation-triangle fs-1 mb-3" style="color:aqua"></i>
-                        <p>Unable to load news. Please check your internet and retry.</p>
-                        <button class="btn btn-outline-info btn-sm mt-2" onclick="fetchNews(true)">
-                            <i class="fas fa-sync-alt"></i> retry
-                        </button>
-                    </div>`;
+                if (!allItems.length) {
+                    newsContainer.innerHTML = `
+                        <div class="alert alert-danger bg-transparent border-danger text-center text-secondary py-5"
+                             style="grid-column:1/-1;background:#1e1e1e!important;">
+                            <i class="fas fa-exclamation-triangle fs-1 mb-3" style="color:aqua"></i>
+                            <p>Unable to load news. Please check your internet and retry.</p>
+                            <button class="btn btn-outline-info btn-sm mt-2" onclick="fetchNews(true)">
+                                <i class="fas fa-sync-alt"></i> retry
+                            </button>
+                        </div>`;
+                }
             }
         }
 
@@ -431,8 +409,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             fetchNews(true);
-            // Auto-refresh every 10 minutes (silent)
-            setInterval(() => fetchNews(false), 600000);
+            setInterval(() => fetchNews(false), 600000); // silent refresh every 10 min
         });
     })();
 </script>
