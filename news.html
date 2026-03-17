@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- original meta + open graph — all preserved -->
+    <!-- all original meta preserved -->
     <meta name="description" content="Find the best free and pro AI tools for coding, video editing, image generation, and automation. Your ultimate AI directory.">
     <meta name="keywords" content="Best AI tools 2026, Free AI software, AI for coding, AI video generators">
     <title>Latest AI News - AI Directory</title>
@@ -21,43 +21,69 @@
     <meta name="author" content="Top AI Tools Hub">
     <meta name="robots" content="index, follow">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons (optional but adds refresh icon) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* original dark theme styles extended */
+        /* original dark theme extended */
         body { background-color: #121212; color: white; overflow-x: hidden; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
         .text-aqua { color: aqua; }
         
-        /* news card styling — professional, matches dark theme */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1.5rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
         .news-card {
             background: #1e1e1e;
             border: 1px solid #333;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-            height: 100%;
+            box-shadow: 0 10px 22px -8px rgba(0,0,0,0.7);
             display: flex;
             flex-direction: column;
             backdrop-filter: blur(2px);
+            height: 100%;
+            cursor: pointer;
         }
         .news-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 14px 28px rgba(0, 255, 255, 0.1);
+            box-shadow: 0 18px 30px -8px rgba(0, 255, 255, 0.15);
             border-color: aqua;
         }
         .news-img {
             width: 100%;
-            height: 180px;
+            height: 190px;
             object-fit: cover;
             background: #2a2a2a;
             border-bottom: 1px solid #333;
+            display: block;
+        }
+        .news-img-placeholder {
+            width: 100%;
+            height: 190px;
+            background: linear-gradient(145deg, #252525, #1a1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00ffff22;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+        }
+        .placeholder-letters {
+            background: #00ffff0c;
+            padding: 1rem;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: aqua;
+            border: 1px dashed #00ffff55;
         }
         .news-content {
             padding: 1.3rem 1.2rem 1.5rem;
@@ -86,12 +112,10 @@
             margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 1rem;
         }
         .news-meta i {
             color: aqua;
-            width: 16px;
-            font-size: 0.75rem;
         }
         .news-description {
             color: #ccc;
@@ -111,7 +135,6 @@
         }
         .read-more:hover {
             border-bottom-color: aqua;
-            color: aqua;
         }
         .btn-back {
             color: aqua;
@@ -121,13 +144,12 @@
         }
         .btn-back:hover { background: aqua; color: black; }
         
-        /* refresh bar */
         .news-header-bar {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            margin: 2rem 0 1rem;
+            margin: 2rem 0 0.5rem;
         }
         .last-updated {
             color: #aaa;
@@ -138,7 +160,7 @@
             border: 1px solid #333;
             color: aqua;
             border-radius: 40px;
-            padding: 0.4rem 1.2rem;
+            padding: 0.4rem 1.4rem;
             font-size: 0.9rem;
             transition: 0.2s;
         }
@@ -147,67 +169,47 @@
             color: #121212;
             border-color: aqua;
         }
-        .spinner-border-sm {
-            width: 1rem;
-            height: 1rem;
-            margin-right: 0.3rem;
-        }
-        /* placeholder image background */
-        .img-placeholder {
-            background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
-            font-size: 2rem;
-        }
         footer a:hover {
             color: aqua !important;
         }
-        /* preserve original iframe wrapper not used, but we keep its style (no conflict) */
-        .old-news-wrapper-hidden { display: none; }
     </style>
 </head>
 <body>
 
 <div class="container py-4">
-    <!-- back button (exactly as before) -->
+    <!-- back button exactly as original -->
     <div class="mb-4">
         <a href="index.html" class="btn btn-outline-info btn-back px-4">
            ← Back to Home
         </a>
     </div>
 
-    <!-- original header (unchanged) -->
     <header class="text-center mb-4">
         <h1 class="fw-bold mb-2">AI News <span class="text-aqua">& Updates</span></h1>
-        <p class="text-secondary">Real-time updates from the global AI community.</p>
+        <p class="text-secondary">Real-time updates about new AI tools & launches.</p>
     </header>
 
-    <!-- dynamic news section replaces old iframe wrapper -->
+    <!-- dynamic news section with refresh bar -->
     <div class="news-wrapper-new">
-        <!-- refresh bar with last updated -->
         <div class="news-header-bar">
-            <span class="last-updated" id="lastUpdated"><i class="far fa-clock me-1"></i> loading news...</span>
+            <span class="last-updated" id="lastUpdated"><i class="far fa-clock me-1"></i> fetching news...</span>
             <button class="btn btn-refresh" id="refreshBtn" onclick="fetchNews()">
                 <i class="fas fa-sync-alt me-1"></i>refresh
             </button>
         </div>
 
-        <!-- news cards container -->
         <div id="news-container" class="news-grid">
             <div class="text-center text-secondary py-5" style="grid-column:1/-1;">
                 <div class="spinner-border text-aqua" role="status"></div>
-                <p class="mt-2">Fetching latest AI tools news ...</p>
+                <p class="mt-2">Loading latest AI tools news ...</p>
             </div>
         </div>
     </div>
 
-    <!-- ORIGINAL FOOTER (exact copy from first file, with all statements) -->
+    <!-- ORIGINAL FOOTER (exact copy) -->
     <footer class="bg-dark text-white pt-5 pb-4 mt-5 border-top border-secondary">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start">
-
                 <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-aqua" style="color: aqua;">Top AI</h5>
                     <p class="small text-secondary">
@@ -216,20 +218,14 @@
                         your workflow and creativity.
                     </p>
                 </div>
-
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold">Categories</h5>
-                    <p><a href="latestTollsPage.html" class="text-secondary text-decoration-none small">Latest Tools</a>
-                    </p>
-                    <p><a href="codingAiToolsPage.html" class="text-secondary text-decoration-none small">Coding AI</a>
-                    </p>
-                    <p><a href="videoMakingTools.html" class="text-secondary text-decoration-none small">Video
-                            Making</a></p>
+                    <p><a href="latestTollsPage.html" class="text-secondary text-decoration-none small">Latest Tools</a></p>
+                    <p><a href="codingAiToolsPage.html" class="text-secondary text-decoration-none small">Coding AI</a></p>
+                    <p><a href="videoMakingTools.html" class="text-secondary text-decoration-none small">Video Making</a></p>
                     <p><a href="chatBots.html" class="text-secondary text-decoration-none small">ChatBots</a></p>
-                    <p><a href="aiAutomationToolsPage.html" class="text-secondary text-decoration-none small">Automation
-                            Ai Tools</a></p>
+                    <p><a href="aiAutomationToolsPage.html" class="text-secondary text-decoration-none small">Automation Ai Tools</a></p>
                 </div>
-
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold">Useful Links</h5>
                     <p><a href="contact.html" class="text-secondary text-decoration-none small">Contact Us</a></p>
@@ -240,9 +236,7 @@
             <div class="row align-items-center">
                 <div class="col-md-7 col-lg-8 text-center text-md-start">
                     <p class="small text-secondary">© 2026 Copyright:
-                        <a href="#" class="text-aqua text-decoration-none" style="color: aqua;">
-                            <strong>Top AI Tools Hub</strong>
-                        </a>
+                        <a href="#" class="text-aqua text-decoration-none" style="color: aqua;"><strong>Top AI Tools Hub</strong></a>
                     </p>
                 </div>
                 <div class="col-md-5 col-lg-4 text-center text-md-end pb-4">
@@ -253,141 +247,160 @@
     </footer>
 </div>
 
-<!-- JavaScript: fetch google news RSS via rss2json, render with images, auto-refresh option -->
 <script>
-    // RSS feed URL (Google News search for AI tools, same as snippet but with additional terms)
-    const RSS_URL = "https://news.google.com/rss/search?q=AI+tools+artificial+intelligence&hl=en-US&gl=US&ceid=US:en";
-    const API_URL = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(RSS_URL);
+    (function() {
+        // more specific query: AI tools + launch/new
+        const RSS_URL = "https://news.google.com/rss/search?q=AI+tools+launch+OR+%22new+AI+tool%22+artificial+intelligence&hl=en-US&gl=US&ceid=US:en";
+        const API_URL = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(RSS_URL);
 
-    const newsContainer = document.getElementById('news-container');
-    const lastUpdatedSpan = document.getElementById('lastUpdated');
+        const newsContainer = document.getElementById('news-container');
+        const lastUpdatedSpan = document.getElementById('lastUpdated');
 
-    // fallback image if none found in description
-    const DEFAULT_IMG = "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=400&q=80"; // AI abstract
-
-    // helper to extract first image src from description string
-    function extractImageFromDescription(description) {
-        if (!description) return null;
-        // try to find <img> tag and extract src
-        const imgTagRegex = /<img.*?src=["'](.*?)["']/i;
-        const match = description.match(imgTagRegex);
-        if (match && match[1]) {
-            // clean relative URLs? but Google Images usually absolute
-            return match[1];
-        }
-        return null;
-    }
-
-    // helper to clean description from html tags and truncate
-    function cleanDescription(html, maxLen = 120) {
-        let text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-        if (text.length > maxLen) {
-            text = text.slice(0, maxLen) + '…';
-        }
-        return text;
-    }
-
-    // format date to relative or just pretty string
-    function formatDate(pubDate) {
-        if (!pubDate) return '';
-        const d = new Date(pubDate);
-        if (isNaN(d.getTime())) return pubDate;
-        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-    }
-
-    // main fetch + render
-    async function fetchNews() {
-        // show loading state
-        newsContainer.innerHTML = `
-            <div class="text-center text-secondary py-5" style="grid-column:1/-1;">
-                <div class="spinner-border text-aqua" role="status"></div>
-                <p class="mt-2">Refreshing news feed ...</p>
-            </div>
-        `;
-
-        try {
-            const response = await fetch(API_URL);
-            const data = await response.json();
-            
-            if (data.status !== 'ok' || !data.items || !data.items.length) {
-                throw new Error('No news items');
+        // helper: extract first image src from description html
+        function extractImageFromDescription(description) {
+            if (!description) return null;
+            const imgRegex = /<img[^>]+src=["']([^"']+)["']/i;
+            const match = description.match(imgRegex);
+            if (match && match[1]) {
+                let src = match[1];
+                if (src.startsWith('//')) src = 'https:' + src;
+                return src;
             }
+            return null;
+        }
 
-            // limit to 18 items (for grid)
-            const items = data.items.slice(0, 24);
-            let cardsHtml = '';
+        function cleanDescription(html, maxLen = 110) {
+            let text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+            if (text.length > maxLen) text = text.slice(0, maxLen) + '…';
+            return text;
+        }
 
-            items.forEach(item => {
-                const title = item.title || 'AI update';
-                const link = item.link || '#';
-                const pubDate = formatDate(item.pubDate);
-                // description often includes <img> and text
-                const rawDesc = item.description || '';
-                const cleanDesc = cleanDescription(rawDesc, 100);
-                
-                // try to get image from description, otherwise use default
-                let imgSrc = extractImageFromDescription(rawDesc);
-                if (!imgSrc) {
-                    // fallback to any enclosure? rss2json doesn't provide; use default
-                    imgSrc = DEFAULT_IMG;
-                }
-                // ensure image is absolute and secure
-                if (imgSrc && imgSrc.startsWith('//')) {
-                    imgSrc = 'https:' + imgSrc;
-                }
+        function formatDate(pubDate) {
+            if (!pubDate) return '';
+            const d = new Date(pubDate);
+            if (isNaN(d.getTime())) return pubDate;
+            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        }
 
-                // build card
-                cardsHtml += `
-                <div class="news-card">
-                    <img class="news-img" src="${imgSrc}" alt="news visual" loading="lazy" onerror="this.onerror=null; this.src='${DEFAULT_IMG}';">
-                    <div class="news-content">
-                        <div class="news-title">
-                            <a href="${link}" target="_blank" rel="noopener">${title}</a>
-                        </div>
-                        <div class="news-meta">
-                            <span><i class="far fa-calendar-alt"></i> ${pubDate}</span>
-                            <span><i class="fas fa-tag"></i> AI tools</span>
-                        </div>
-                        <div class="news-description">${cleanDesc}</div>
-                        <a href="${link}" target="_blank" rel="noopener" class="read-more">read full article →</a>
-                    </div>
-                </div>
-                `;
-            });
+        function getPlaceholderLetters(title) {
+            if (!title) return 'AI';
+            const words = title.split(' ');
+            if (words.length >= 2) {
+                return (words[0][0] + words[1][0]).toUpperCase();
+            } else {
+                return title.slice(0, 2).toUpperCase();
+            }
+        }
 
-            newsContainer.innerHTML = cardsHtml;
-            // update timestamp
-            const now = new Date();
-            lastUpdatedSpan.innerHTML = `<i class="far fa-clock me-1"></i> last updated: ${now.toLocaleTimeString()}`;
-
-        } catch (error) {
-            console.error('News fetch error:', error);
+        // main fetch with timeout to avoid hanging
+        async function fetchNews() {
+            // Set a timeout promise
+            const timeoutPromise = new Promise((_, reject) => 
+                setTimeout(() => reject(new Error('Fetch timeout')), 10000)
+            );
+            
             newsContainer.innerHTML = `
-                <div class="alert alert-danger bg-transparent border-danger text-center text-secondary py-5" style="grid-column:1/-1; background:#1e1e1e !important;">
-                    <i class="fas fa-exclamation-triangle text-aqua fs-1 mb-3"></i>
-                    <p>Unable to load news. Please try again later.</p>
-                    <button class="btn btn-outline-info btn-sm mt-2" onclick="fetchNews()"><i class="fas fa-sync-alt"></i> retry</button>
+                <div class="text-center text-secondary py-5" style="grid-column:1/-1;">
+                    <div class="spinner-border text-aqua" role="status"></div>
+                    <p class="mt-2">Loading latest AI tools news ...</p>
                 </div>
             `;
+
+            try {
+                // Race fetch against timeout
+                const response = await Promise.race([
+                    fetch(API_URL),
+                    timeoutPromise
+                ]);
+                
+                const data = await response.json();
+                
+                if (data.status !== 'ok' || !data.items || !data.items.length) {
+                    throw new Error('No news items');
+                }
+
+                // get up to 42 items
+                const items = data.items.slice(0, 42);
+                let cardsHtml = '';
+
+                items.forEach(item => {
+                    const title = item.title || 'AI update';
+                    const link = item.link || '#';
+                    const pubDate = formatDate(item.pubDate);
+                    const rawDesc = item.description || '';
+                    const cleanDesc = cleanDescription(rawDesc, 100);
+                    
+                    let imgSrc = extractImageFromDescription(rawDesc);
+                    let usePlaceholder = false;
+                    if (!imgSrc) {
+                        usePlaceholder = true;
+                    }
+
+                    const placeholderLetters = getPlaceholderLetters(title);
+                    // escape quotes for attributes
+                    const escapedLink = link.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                    const escapedTitle = title.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+
+                    // card with onclick that opens new tab, and inner links also open new tab with stopPropagation
+                    if (!usePlaceholder) {
+                        cardsHtml += `
+                        <div class="news-card" onclick="window.open('${escapedLink}', '_blank');">
+                            <img class="news-img" src="${imgSrc}" alt="news visual" loading="lazy" 
+                                 onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'news-img-placeholder\\'><div class=\\'placeholder-letters\\'>${placeholderLetters}</div></div>';">
+                            <div class="news-content">
+                                <div class="news-title"><a href="${escapedLink}" target="_blank" rel="noopener" onclick="event.stopPropagation();">${title}</a></div>
+                                <div class="news-meta"><span><i class="far fa-calendar-alt"></i> ${pubDate}</span><span><i class="fas fa-robot"></i> AI tool</span></div>
+                                <div class="news-description">${cleanDesc}</div>
+                                <a href="${escapedLink}" target="_blank" rel="noopener" class="read-more" onclick="event.stopPropagation();">read article →</a>
+                            </div>
+                        </div>
+                        `;
+                    } else {
+                        cardsHtml += `
+                        <div class="news-card" onclick="window.open('${escapedLink}', '_blank');">
+                            <div class="news-img-placeholder">
+                                <div class="placeholder-letters">${placeholderLetters}</div>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-title"><a href="${escapedLink}" target="_blank" rel="noopener" onclick="event.stopPropagation();">${title}</a></div>
+                                <div class="news-meta"><span><i class="far fa-calendar-alt"></i> ${pubDate}</span><span><i class="fas fa-tag"></i> AI tools</span></div>
+                                <div class="news-description">${cleanDesc}</div>
+                                <a href="${escapedLink}" target="_blank" rel="noopener" class="read-more" onclick="event.stopPropagation();">read article →</a>
+                            </div>
+                        </div>
+                        `;
+                    }
+                });
+
+                newsContainer.innerHTML = cardsHtml;
+                const now = new Date();
+                lastUpdatedSpan.innerHTML = `<i class="far fa-clock me-1"></i> last updated: ${now.toLocaleTimeString()}`;
+
+            } catch (error) {
+                console.error('News fetch error:', error);
+                newsContainer.innerHTML = `
+                    <div class="alert alert-danger bg-transparent border-danger text-center text-secondary py-5" style="grid-column:1/-1; background:#1e1e1e !important;">
+                        <i class="fas fa-exclamation-triangle text-aqua fs-1 mb-3"></i>
+                        <p>Unable to load news. Please try again later.</p>
+                        <button class="btn btn-outline-info btn-sm mt-2" onclick="fetchNews()"><i class="fas fa-sync-alt"></i> retry</button>
+                    </div>
+                `;
+            }
         }
-    }
 
-    // auto-refresh every 5 minutes (300000 ms) but also preserve manual refresh
-    setInterval(() => {
-        fetchNews();
-    }, 300000); // 5 minutes
+        // attach fetch to window and auto-refresh
+        window.fetchNews = fetchNews;
 
-    // initial load
-    fetchNews();
+        // when DOM is fully loaded, start fetch
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchNews();
+            // auto-refresh every 5 minutes
+            setInterval(fetchNews, 300000);
+        });
+    })();
 </script>
 
-<!-- optional: make refresh button work globally -->
-<script>
-    // ensure refresh button calls fetchNews (already inline, but define globally)
-    window.fetchNews = fetchNews;
-</script>
-
-<!-- Bootstrap JS (optional for any toggles, but not strictly needed) -->
+<!-- Bootstrap JS (optional, for any future use) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
